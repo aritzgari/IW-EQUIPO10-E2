@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'appGestion_de_la_produccion'
 ]
 
 MIDDLEWARE = [
