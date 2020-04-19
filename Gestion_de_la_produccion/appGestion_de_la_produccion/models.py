@@ -3,8 +3,6 @@ from django.db import models
 
 # Create your models here.
 
-
-
 class Equipo(models.Model):
     modelo = models.CharField(max_length=25)
     marca = models.CharField(max_length=25)
@@ -13,7 +11,7 @@ class Equipo(models.Model):
     fecha_instalacion = models.DateField()
 
     def __str__(self):
-        return f"modelo={self.modelo},marca={self.marca}"
+        return f"id ={self.id}, modelo={self.modelo}, marca={self.marca}, categoria={self.categoria}, fecha_adquision={self.fecha_adquision}, fecha_instalacion={self.fecha_instalacion}"
 
 
 class Empleado(models.Model):
@@ -24,12 +22,12 @@ class Empleado(models.Model):
     telefono = models.IntegerField()
 
     def __str__(self):
-        return f"nombre={self.nombre},apellido={self.apellido},DNI={self.DNI}"
+        return f"id ={self.id}, nombre={self.nombre}, apellido={self.apellido}, DNI={self.DNI}, email={self.email}, telefono={self.telefono}"
 
 
 class Proceso(models.Model):
-    equipo = models.ForeignKey(Equipo, on_delete=callable(Equipo.marca))
     empleados_asignados = models.ManyToManyField(Empleado)
+    equipo=models.ForeignKey(Equipo, on_delete=models.CASCADE)
     codigo_orden = models.CharField(max_length=10)
     codigo_proceso = models.IntegerField()
     nombre_proceso = models.CharField(max_length=50)
@@ -37,6 +35,5 @@ class Proceso(models.Model):
     inicio = models.DateField()
     fin = models.DateField()
 
-
     def __str__(self):
-        return f"codigoorden={self.codigoorden},nombreproceso={self.nombreproceso}"
+        return f"codigoorden={self.codigo_orden}, codigo_proceso={self.codigo_proceso}, nombreproceso={self.nombre_proceso}, referencia={self.referencia}, inicio={self.inicio}, fin={self.fin}"
