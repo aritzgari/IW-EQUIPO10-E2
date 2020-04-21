@@ -11,6 +11,22 @@ def index(request):
     output3 = ' , '.join([d.nombre_proceso for d in proceso])
     return HttpResponse ("Equipos: "+output+"\n Empleados: "+output2+"\n Procesos: "+output3)
 
+def lista_equipos(request):
+    equipo = Equipo.objects.order_by("modelo")
+    context = {"lista_equipos": equipo}
+    return render(request,"Equipo.html",context)
+
+def lista_empleados(request):
+    empleado=Empleado.objects.order_by("nombre")
+    context = {"lista_empleados": empleado}
+    return render(request,"Empleado.html",context)
+
+def lista_procesos(request):
+    proceso=Proceso.objects.order_by("nombre_proceso")
+    context = {"lista_procesos": proceso}
+    return render(request,"Proceso.html",context)
+
+
 def detailEquipo (request, equipo_id):
     equipo=Equipo.objects.get(pk=equipo_id)
     return HttpResponse(equipo)

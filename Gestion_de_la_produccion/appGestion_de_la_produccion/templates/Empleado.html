@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Django</title>
+</head>
+<body>
+<h1>App de Empleados</h1>
+<h2>Listado de Empleados</h2>
+<ul>
+    {% for Empleado in lista_empleados %}
+    <li>
+        {{ Empleado.DNI }}: {{ Empleado.nombre }} {{ Empleado.apellido }}
+    </li>
+    {% endfor %}
+</ul>
+</body>
+</html>

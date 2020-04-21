@@ -36,4 +36,4 @@ class Proceso(models.Model):
     fin = models.DateField()
 
     def __str__(self):
-        return f"codigoorden={self.codigo_orden}, codigo_proceso={self.codigo_proceso}, nombreproceso={self.nombre_proceso}, referencia={self.referencia}, inicio={self.inicio}, fin={self.fin}"
+        return f"codigoorden={self.codigo_orden}, codigo_proceso={self.codigo_proceso}, nombre_proceso={self.nombre_proceso}, referencia={self.referencia}, inicio={self.inicio}, fin={self.fin}"
