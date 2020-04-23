@@ -36,6 +36,8 @@ def operario(request):
     proceso=Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request,"Operario.html",context)
+def formularioempleado(request):
+    return render(request,"FormularioEmpleado.html")
 
 def detailEquipo (request, equipo_id):
     equipo=Equipo.objects.get(pk=equipo_id)

@@ -1,0 +1,16 @@
+
+{% extends "PlantillaHeaderFooter.html"%}
+{% block contenido %}
+<form>
+    <fieldset>
+        <legend>Datos del empleado</legend>
+        Nombre <input type="text" name="user_name"></br>
+        Apellido <input type="text" name="user_subname"></br>
+        Email <input type="text" name="email"></br>
+        DNI <input type="text" name="DNI"></br>
+        Telefono <input type="number" name="telefono"></br>
+        </br>
+        <input type="button" name="Enviar" value="ENVIAR">
+    </fieldset>
+</form>
+{% endblock %}

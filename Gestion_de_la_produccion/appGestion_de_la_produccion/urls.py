@@ -10,5 +10,7 @@ urlpatterns = [
     path ('responsable/empleado/',views.lista_empleados, name='lista_empleados'),
     path ('responsable/proceso/',views.lista_procesos, name='lista_procesos'),
     path ('responsable/',views.responsable, name='responsable'),
-    path ('operario/',views.operario, name='operario')
+    path ('operario/',views.operario, name='operario'),
+    path ('responsable/formularioempleado/',views.formularioempleado, name='formularioempleado'),
+
 ]
