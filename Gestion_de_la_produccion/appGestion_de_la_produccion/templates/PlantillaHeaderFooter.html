@@ -1,14 +1,16 @@
-<!DOCTYPE html>
+{% load static%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>App para la Gestión de la producción</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <link rel="shortcut icon" href="/static/Imagenes/favicon.jpg" type="image/x-icon">
 </head>
 <body>
 <header>
     <nav>
         <a class="enlaceaikerlan" href="https://www.ikerlan.es" target="_blank" title="Visita nuestra página"> <img
-                src="Imagenes/Ikerlan.png" width="80" height="35"></a>
+                src="/static/Imagenes/Ikerlan.PNG" width="80" height="35"></a>
         <a class="header" href="PaginaPrincipal.html">Inicio</a>
         <a class="header" href="Formulario.html">Añadir proyecto</a>
         <a class="header" href="FAQ.html">FAQ</a>
@@ -17,13 +19,13 @@
 {% block contenido %} {% endblock %}
 <footer>
     <a class="enlacesfooter" href="https://twitter.com" target="_blank" title="Síguenos en twitter"> <img
-            src="Imagenes/twitter.png" width="30" height="30"></a>
+            src="/static/Imagenes/twitter.png" width="30" height="30"></a>
     <a class="enlacesfooter" href="https://www.youtube.com" target="_blank"
-       title="No olvides visitar nuestro canal de you tube"> <img src="Imagenes/youtube.png" width="30" height="30"></a>
+       title="No olvides visitar nuestro canal de you tube"> <img src="/static/Imagenes/youtube.png" width="30" height="30"></a>
     <a class="enlacesfooter" href="https://www.linkedin.com" target="_blank" title="También estamos en LinkedIn"> <img
-            src="Imagenes/linkedin.png" width="30" height="30"></a>
+            src="/static/Imagenes/linkedin.png" width="30" height="30"></a>
     <a class="enlacesfooter" href="https://www.facebook.com" target="_blank" title="Dale like en facebook"> <img
-            src="Imagenes/facebook.png" width="30" height="30"></a>
+            src="/static/Imagenes/facebook.png" width="30" height="30"></a>
     <p class="textofooter">© DEUSTUBULAR S.L. Todos los derechos reservados.</p>
 </footer>
 </body>
