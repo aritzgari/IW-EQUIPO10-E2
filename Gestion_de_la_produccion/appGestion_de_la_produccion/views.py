@@ -25,7 +25,17 @@ def lista_procesos(request):
     proceso=Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request,"Proceso.html",context)
+def responsable(request):
+    equipo = Equipo.objects.order_by("modelo")
+    empleado=Empleado.objects.order_by("nombre")
+    proceso=Proceso.objects.order_by("nombre_proceso")
+    context={"lista_equipos": equipo,"lista_empleados": empleado, "lista_procesos": proceso}
+    return render(request,"Responsable.html", context)
 
+def operario(request):
+    proceso=Proceso.objects.order_by("nombre_proceso")
+    context = {"lista_procesos": proceso}
+    return render(request,"Operario.html",context)
 
 def detailEquipo (request, equipo_id):
     equipo=Equipo.objects.get(pk=equipo_id)

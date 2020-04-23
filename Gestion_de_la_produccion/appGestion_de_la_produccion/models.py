@@ -20,9 +20,10 @@ class Empleado(models.Model):
     apellido = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
     telefono = models.IntegerField()
+    responsable=models.BooleanField()
 
     def __str__(self):
-        return f"id ={self.id}, nombre={self.nombre}, apellido={self.apellido}, DNI={self.DNI}, email={self.email}, telefono={self.telefono}"
+        return f"id ={self.id},responsable={self.responsable}, nombre={self.nombre}, apellido={self.apellido}, DNI={self.DNI}, email={self.email}, telefono={self.telefono}"
 
 
 class Proceso(models.Model):

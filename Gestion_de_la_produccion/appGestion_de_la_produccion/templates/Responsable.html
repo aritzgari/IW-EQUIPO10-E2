@@ -1,0 +1,29 @@
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
+<h1>App de Gestión</h1>
+<h2>Listado de Procesos</h2>
+<ul>
+    {% for Proceso in lista_procesos %}
+    <li>
+        {{ Proceso.codigo_proceso }}: {{ Proceso.nombre_proceso }}
+    </li>
+    {% endfor %}
+</ul>
+<h2>Listado de Empleados</h2>
+<ul>
+    {% for Empleado in lista_empleados %}
+    <li>
+        {{ Empleado.DNI }}: {{ Empleado.nombre }} {{ Empleado.apellido }}
+    </li>
+    {% endfor %}
+</ul>
+<h2>Listado de Equipos</h2>
+<ul>
+    {% for Equipo in lista_equipos %}
+    <li>
+        {{ Equipo.marca }} {{ Equipo.modelo }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

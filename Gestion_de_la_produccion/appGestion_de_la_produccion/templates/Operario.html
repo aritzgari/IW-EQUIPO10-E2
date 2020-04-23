@@ -1,0 +1,13 @@
+{% extends "PlantillaOperario.html"%}
+
+{% block contenido %}
+<h1>App de Procesos</h1>
+<h2>Listado de Procesos</h2>
+<ul>
+    {% for Proceso in lista_procesos %}
+    <li>
+        {{ Proceso.codigo_proceso }}: {{ Proceso.nombre_proceso }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
