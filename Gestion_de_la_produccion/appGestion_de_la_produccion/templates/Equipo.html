@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-       <title>App Django</title>
-    </head>
-    <body>
-        <h1>App de Equipos</h1>
-        <h2>Listado de Equipos</h2>
-        <ul>
-            {% for Equipo in lista_equipos %}
-            <li>
-                {{ Equipo.marca }} {{ Equipo.modelo }}
-            </li>
-            {% endfor %}
-        </ul>
-    </body>
-</html>
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
+<h1>App de Equipos</h1>
+<h2>Listado de Equipos</h2>
+<ul>
+    {% for Equipo in lista_equipos %}
+    <li>
+        {{ Equipo.marca }} {{ Equipo.modelo }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>App Django</title>
-</head>
-<body>
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
 <h1>App de Procesos</h1>
 <h2>Listado de Procesos</h2>
 <ul>
@@ -13,5 +10,4 @@
     </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
