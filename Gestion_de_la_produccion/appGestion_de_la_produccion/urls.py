@@ -12,5 +12,6 @@ urlpatterns = [
     path ('responsable/',views.responsable, name='responsable'),
     path ('operario/',views.operario, name='operario'),
     path ('responsable/formularioempleado/',views.formularioempleado, name='formularioempleado'),
+    path ('registrarempleados/',views.post_formularioempleado, name='postformularioempleado')
 
 ]

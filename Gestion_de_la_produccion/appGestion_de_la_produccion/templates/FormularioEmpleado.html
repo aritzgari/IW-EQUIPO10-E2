@@ -1,16 +1,17 @@
 
 {% extends "PlantillaHeaderFooter.html"%}
 {% block contenido %}
-<form>
+<form action="{% url 'postformularioempleado' %}" method="post">
+    {% csrf_token %}
     <fieldset>
         <legend>Datos del empleado</legend>
-        Nombre <input type="text" name="user_name"></br>
-        Apellido <input type="text" name="user_subname"></br>
-        Email <input type="text" name="email"></br>
-        DNI <input type="text" name="DNI"></br>
-        Telefono <input type="number" name="telefono"></br>
+        <label>Nombre</label> <input type="text" name="nombre"></br>
+        <label>Apellido</label> <input type="text" name="apellido"></br>
+        <label>Email</label> <input type="text" name="email"></br>
+        <label>DNI</label> <input type="text" name="DNI"></br>
+        <label>Telefono</label> <input type="number" name="telefono"></br>
         </br>
-        <input type="button" name="Enviar" value="ENVIAR">
+        <input type="submit" value="ENVIAR">
     </fieldset>
 </form>
 {% endblock %}
