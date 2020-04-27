@@ -1,0 +1,22 @@
+{% load static%}
+<html class="fondo" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App para la Gestión de la producción</title>
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}">
+    <link rel="shortcut icon" href="/static/Imagenes/tuercabien.ico" type="image/x-icon">
+</head>
+<body class="bodylogin">
+    <div>
+        <img class="fieldsetlogin" src="/static/Imagenes/Deustubular.png" alt="Logo de Deustubular">
+        <fieldset class="fieldsetlogin">
+            <legend id="leyenda">Iniciar sesión</legend>
+            <form>
+            <label>Usuario</label> <input type="text" name="nombre" placeholder="Introduce tu usuario"></br>
+            <label>Contraseña</label> <input type="text" name="contraseña" placeholder="Introduce tu contraseña"></br>
+            <input class="enviar" type="submit" value="Enviar">
+            </form>
+        </fieldset>
+    </div>
+</body>
+</html>

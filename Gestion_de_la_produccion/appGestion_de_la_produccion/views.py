@@ -60,3 +60,5 @@ def detailEmpleado (request, empleado_id):
 def detailProceso (request, proceso_id):
     proceso=Proceso.objects.get(pk=proceso_id)
     return HttpResponse(proceso)
+def login(request):
+    return render(request, "Login.html")
