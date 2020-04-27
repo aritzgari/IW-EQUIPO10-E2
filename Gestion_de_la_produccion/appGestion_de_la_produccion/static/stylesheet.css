@@ -110,16 +110,24 @@ footer{
     background-repeat: no-repeat;
 }
 .bodylogin{
-    color: turquoise;
+    color: white;
 }
 .fieldsetlogin{
-    margin-left:500px;
-    margin-right: 600px;
+    margin-left:400px;
+    margin-right: 500px;
+    background-color:rgb(8,59,102);
+    padding-right:40px;
+    padding-left:40px;
 }
 .enviar{
     margin-top: 20px;
     margin-left: 50px;
 }
+.imagenlogin{
+    margin-left:425px;
+    margin-right: 500px;
+}
 #leyenda{
-    color:red;
+    color:white;
+    font-size: 20px;
 }
