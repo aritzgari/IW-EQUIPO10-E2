@@ -1,15 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Equipo, Empleado, Proceso
+from .forms import empleadoform
 
-def index(request):
-    equipo = Equipo.objects.order_by("modelo")
-    output = ' , '.join([d.modelo for d in equipo])
-    empleado=Empleado.objects.order_by("nombre")
-    output2 = ' , '.join([d.nombre for d in empleado])
-    proceso=Proceso.objects.order_by("nombre_proceso")
-    output3 = ' , '.join([d.nombre_proceso for d in proceso])
-    return HttpResponse ("Equipos: "+output+"\n Empleados: "+output2+"\n Procesos: "+output3)
+def login(request):
+
+    return render(request,"Login.html")
 
 def lista_equipos(request):
     equipo = Equipo.objects.order_by("modelo")
@@ -46,19 +42,28 @@ def post_formularioempleado(request):
     DNI=request.POST["DNI"]
     telefono = request.POST["telefono"]
     email = request.POST["email"]
-    print("esto llega")
+
     return HttpResponse("El empleado se ha guardado correctamente")
 
-def detailEquipo (request, equipo_id):
-    equipo=Equipo.objects.get(pk=equipo_id)
-    return HttpResponse(equipo)
+def formularioequipo(request):
+    return render(request,"FormularioEquipo.html")
 
-def detailEmpleado (request, empleado_id):
-    empleado=Empleado.objects.get(pk=empleado_id)
-    return HttpResponse(empleado)
+def post_formularioequipo(request):
+    marca=request.POST["marca"]
+    modelo=request.POST["modelo"]
+    categoria=request.POST["categoria"]
+    fecha_adquisicion = request.POST["fecha_adquisicion"]
+    fecha_instalacion = request.POST["fecha_instalacion"]
 
-def detailProceso (request, proceso_id):
-    proceso=Proceso.objects.get(pk=proceso_id)
-    return HttpResponse(proceso)
-def login(request):
-    return render(request, "Login.html")
+    return HttpResponse("El equipo se ha guardado correctamente")
+
+def show_empleado_form(request):
+    form= empleadoform()
+    return render(request,"empleado_form.html",{"form":form})
+def post_empleado_form(request):
+    form=empleadoform(request.POST)
+    if form.is_valid():
+        nombre=form.cleaned_data["nombre"]
+        apellido=form.cleaned_data["apellido"]
+        DNI=form.cleaned_data["DNI"]
+        return HttpResponse(f"El usuario {nombre} {apellido} con DNI {DNI} ha sido guardado correctamente")

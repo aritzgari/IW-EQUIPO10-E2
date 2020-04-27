@@ -1,8 +1,10 @@
 {% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
-<h1>App de Equipos</h1>
-<h2>Listado de Equipos</h2>
+
+<h1>Listado de Equipos<a href="/appGestion_de_la_produccion/responsable/formularioequipo" title="Añadir nuevo equipo"><img
+        src="/static/Imagenes/añadir.png" width="20" height="20"></a> </h1>
+
 <ul>
     {% for Equipo in lista_equipos %}
     <li>

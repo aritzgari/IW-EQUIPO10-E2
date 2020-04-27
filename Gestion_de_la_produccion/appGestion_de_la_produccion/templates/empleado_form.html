@@ -1,0 +1,11 @@
+{% extends "PlantillaHeaderFooter.html"%}
+{% block contenido %}
+<fieldset>
+    <legend>Datos del empleado</legend>
+        <form action="{% url 'postempleadoform' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <input type="submit" value="NUEVO EMPLEADO">
+    </form>
+</fieldset>
+{% endblock %}

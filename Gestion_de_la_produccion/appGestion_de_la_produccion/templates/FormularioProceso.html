@@ -1,0 +1,19 @@
+{% extends "PlantillaHeaderFooter.html"%}
+{% block contenido %}
+<form action="{% url 'postformularioproceso' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Datos del proceso</legend>
+        <label>Empleados asignados</label> <input type="checkbox" name="empleados_asignados"></br>
+        <label>Equipo</label> <input type="text" name="equipo"></br>
+        <label>Codigo orden</label> <input type="number" name="codigo_orden"></br>
+        <label>Codigo de proceso</label> <input type="text" name="codigo_proceso"></br>
+        <label>Nombre de proceso</label> <input type="text" name="nombre_proceso"></br>
+        <label>Referencia</label> <input type="text" name="referencia"></br>
+        <label>Inicio</label> <input type="date" name="inicio"></br>
+        <label>Fin</label> <input type="date" name="fin"></br>
+        </br>
+        <input type="submit" value="ENVIAR">
+    </fieldset>
+</form>
+{% endblock %}
