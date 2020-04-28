@@ -1,18 +1,15 @@
 from django.db import models
 
-
 # Create your models here.
-
 class Equipo(models.Model):
     modelo = models.CharField(max_length=25)
     marca = models.CharField(max_length=25)
     categoria = models.CharField(max_length=50)
-    fecha_adquision = models.DateField()
+    fecha_adquisicion = models.DateField()
     fecha_instalacion = models.DateField()
 
     def __str__(self):
-        return f"id ={self.id}, modelo={self.modelo}, marca={self.marca}, categoria={self.categoria}, fecha_adquision={self.fecha_adquision}, fecha_instalacion={self.fecha_instalacion}"
-
+        return f"id ={self.id}, modelo={self.modelo}, marca={self.marca}, categoria={self.categoria}, fecha_adquisicion={self.fecha_adquisicion}, fecha_instalacion={self.fecha_instalacion}"
 
 class Empleado(models.Model):
     nombre = models.CharField(max_length=50)

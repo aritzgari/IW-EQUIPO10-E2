@@ -21,6 +21,7 @@ def lista_procesos(request):
     proceso=Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request,"Proceso.html",context)
+
 def responsable(request):
     equipo = Equipo.objects.order_by("modelo")
     empleado=Empleado.objects.order_by("nombre")
@@ -55,7 +56,8 @@ def post_formularioequipo(request):
     categoria=request.POST["categoria"]
     fecha_adquisicion = request.POST["fecha_adquisicion"]
     fecha_instalacion = request.POST["fecha_instalacion"]
-
+    equipo = Equipo(marca=marca, modelo=modelo, categoria=categoria, fecha_adquisicion=fecha_adquisicion, fecha_instalacion=fecha_instalacion)
+    equipo.save()
     return HttpResponse("El equipo se ha guardado correctamente")
 
 def show_empleado_form(request):
@@ -68,3 +70,4 @@ def post_empleado_form(request):
         apellido=form.cleaned_data["apellido"]
         DNI=form.cleaned_data["DNI"]
         return HttpResponse(f"El usuario {nombre} {apellido} con DNI {DNI} ha sido guardado correctamente")
+

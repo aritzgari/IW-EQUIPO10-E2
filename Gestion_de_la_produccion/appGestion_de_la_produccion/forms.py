@@ -9,7 +9,6 @@ class empleadoform(forms.Form):
 
 
 
-
 # Formulario crear Empleados
 # class EmpleadoForm(forms.ModelForm):
 #     class Meta:
