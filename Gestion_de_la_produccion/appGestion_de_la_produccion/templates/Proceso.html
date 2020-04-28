@@ -1,8 +1,8 @@
 {% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
-<h1>App de Procesos</h1>
-<h2>Listado de Procesos</h2>
+<h1>Listado de Procesos<a href="/appGestion_de_la_produccion/responsable/procesoform" title="Añadir nuevo proceso"><img
+        src="/static/Imagenes/añadir.png" width="20" height="20"></a></h1>
 <ul>
     {% for Proceso in lista_procesos %}
     <li>

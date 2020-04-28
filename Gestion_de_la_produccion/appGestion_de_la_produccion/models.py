@@ -22,12 +22,11 @@ class Empleado(models.Model):
     def __str__(self):
         return f"id ={self.id},responsable={self.responsable}, nombre={self.nombre}, apellido={self.apellido}, DNI={self.DNI}, email={self.email}, telefono={self.telefono}"
 
-class Login(models.Model):
-    usuario=models.CharField(max_length=50)
-    contrasena=models.CharField(max_length=50)
-
-    def __str__(self):
-        return f"id ={self.id},usuario={self.usuario},contraseña={self.contraseña}"
+# class Login(models.Model):
+#     usuario=models.ForeignKey(Empleado,on_delete=models.CASCADE, related_name="email")
+#     contrasena=models.ForeignKey(Empleado,on_delete=models.CASCADE,related_name="DNI")
+#     def __str__(self):
+#         return f"id ={self.id},usuario={self.usuario},contraseña={self.contraseña}"
 
 class Proceso(models.Model):
     empleados_asignados = models.ManyToManyField(Empleado)

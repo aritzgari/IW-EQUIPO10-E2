@@ -5,4 +5,5 @@ from . models import Proceso, Equipo, Empleado
 admin.site.register(Proceso)
 admin.site.register(Equipo)
 admin.site.register(Empleado)
+#admin.site.register(Login)
 

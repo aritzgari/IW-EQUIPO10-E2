@@ -1,11 +1,11 @@
 from django.shortcuts import render
 
 from .forms import empleadoform, equipoform, procesoform
-from .models import Equipo, Empleado, Proceso, Login
+from .models import Equipo, Empleado, Proceso
 
 
 def lista_equipos(request):
-    equipo = Equipo.objects.order_by("modelo")
+    equipo = Equipo.objects.order_by("id")
     context = {"lista_equipos": equipo}
     return render(request, "Equipo.html", context)
 
@@ -71,36 +71,12 @@ def guardadocorrectamente(request):
     return render(request, "Guardadocorrectamente.html")
 
 
-def post_login(request):
-    usuario = request.POST["usuario"]
-    contrasena = request.POST["contraseña"]
-    login = Login(usuario=usuario, contraseña=contrasena)
-    login.save()
-    return render(request, "Guardadocorrectamente.html")
-
-
-def login(req):
-    # context={'form':RegisterForm, 'login':LoginForm}
-    return render(req, "Login.html")
-
-
-# def do_login(req):
-#     print('lego aqui')
-#     username = req.POST['username']
-#     password = req.POST['password']
-#     user = authenticate(req, username=username, password=password)
-#     if user is not None:
-#         login(req, user)
-#         print('bien')
-#         print(req.GET)
-#         return redirect('index')
-#     else:
-#         print('mal')
-#         return redirect('get_login')
-# def do_logout(req):
-#     logout(req)
-#     return redirect('get_login')
-
+# def post_login(request):
+#     usuario = request.POST["usuario"]
+#     contrasena = request.POST["contraseña"]
+#     login = Login(usuario=usuario, contraseña=contrasena)
+#     login.save()
+#     return render(request, "Guardadocorrectamente.html")
 
 # formulario heredado video
 def show_empleado_form(request):
@@ -151,16 +127,28 @@ def post_proceso_form(request):
     form = procesoform(request.POST)
 
     if form.is_valid():
-        # empleados_asignados=form.cleaned_data["empleados_asignados"]
-        # equipo=form.cleaned_data["equipo"]
-        # codigo_orden=form.cleaned_data["codigo_orden"]
-        # codigo_proceso=form.cleaned_data["codigo_proceso"]
-        # nombre_proceso=form.cleaned_data["nombre_proceso"]
-        # referencia=form.cleaned_data["referencia"]
-        # inicio=form.cleaned_data["inicio"]
-        # fin=form.cleaned_data["fin"]
-        # proceso= Proceso(empleados_asignados=empleados_asignados, equipo=equipo, codigo_orden=codigo_orden,
-        #                  codigo_proceso=codigo_proceso, nombre_proceso=nombre_proceso, referencia=referencia,
-        #                  inicio=inicio, fin=fin)
         form.save()
         return render(request, "Guardadocorrectamente.html")
+
+
+# def login(req):
+#     # context={'form':RegisterForm, 'login':LoginForm}
+#     return render(req, "Login.html")
+
+
+# def do_login(req):
+#     print('lego aqui')
+#     username = req.POST['username']
+#     password = req.POST['password']
+#     user = authenticate(req, username=username, password=password)
+#     if user is not None:
+#         login(req, user)
+#         print('bien')
+#         print(req.GET)
+#         return redirect('index')
+#     else:
+#         print('mal')
+#         return redirect('get_login')
+# def do_logout(req):
+#     logout(req)
+#     return redirect('get_login')

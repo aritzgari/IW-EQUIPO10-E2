@@ -61,7 +61,7 @@ nav{
 }
 
 thead{
-    color: darkblue;
+    color: rgb(8,59,102);
 }
 
 .header{
@@ -131,4 +131,15 @@ footer{
 #leyenda{
     color:white;
     font-size: 20px;
+}
+.cosadeequipo{
+    border:2px solid rgb(8,59,102);
+    font-size:25px;
+    margin-right:20px;
+    text-align:center;
+}
+#cosadeequipo{
+    border:4px solid rgb(8,59,102);
+    margin-left:45px;
+    margin-bottom:40px;
 }
