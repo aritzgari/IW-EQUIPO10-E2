@@ -11,12 +11,7 @@
         <img class="imagenlogin" src="/static/Imagenes/Deustubular.png" alt="Logo de Deustubular">
         <fieldset class="fieldsetlogin">
             <h1 id="leyenda">Iniciar sesión</h1>
-            <form>
-            <label>Usuario</label> <input type="text" name="nombre" placeholder="Introduce tu usuario"></br>
-            <label>Contraseña</label> <input type="text" name="contraseña" placeholder="Introduce tu contraseña"></br>
-            <input class="enviar" value="Enviar" type="image" src="/static/Imagenes/enviar.png" alt="Enviar"
-                        width="80" height="28">
-            </form>
+        {% block contenido %} {% endblock %}
         </fieldset>
     </div>
 </body>

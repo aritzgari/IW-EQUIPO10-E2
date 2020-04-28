@@ -1,0 +1,9 @@
+{% extends "Login.html"%}
+{% block contenido %}
+<form action="{% url 'postlogin' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="enviar" value="Enviar" type="image" src="/static/Imagenes/enviar.png" alt="Enviar"
+                            width="80" height="28">
+</form>
+{% endblock %}
