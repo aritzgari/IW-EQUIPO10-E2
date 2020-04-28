@@ -42,7 +42,8 @@ def post_formularioempleado(request):
     DNI=request.POST["DNI"]
     telefono = request.POST["telefono"]
     email = request.POST["email"]
-
+    empleado = Empleado(nombre=nombre, apellido=apellido, DNI=DNI, telefono=telefono, email=email, responsable=False)
+    empleado.save()
     return HttpResponse("El empleado se ha guardado correctamente")
 
 def formularioequipo(request):
