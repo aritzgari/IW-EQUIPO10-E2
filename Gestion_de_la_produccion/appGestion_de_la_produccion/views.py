@@ -138,6 +138,7 @@ def post_equipo_form(request):
         equipo = Equipo(marca=marca, modelo=modelo, categoria=categoria, fecha_adquisicion=fecha_adquisicion,
                         fecha_instalacion=fecha_instalacion)
         equipo.save()
+
         return render(request, "Guardadocorrectamente.html")
 
 
