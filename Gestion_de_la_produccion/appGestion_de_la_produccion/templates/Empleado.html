@@ -4,11 +4,27 @@
 
 <h1>Listado de Empleados <a href="/appGestion_de_la_produccion/responsable/empleadoform" title="Añadir nuevo empleado"><img
         src="/static/Imagenes/añadir.png" width="20" height="20"></a> </h1>
-<ul>
+
+<table id="cosadeempleado">
+    <thead>
+    <tr class="cosadeempleado">
+        <td class="cosadeempleado"> <b> DNI </b> </td>
+        <td class="cosadeempleado"> <b> NOMBRE</b> </td>
+        <td class="cosadeempleado"> <b> APELLIDO</b> </td>
+        <td class="cosadeempleado"> <b> EMAIL</b> </td>
+        <td class="cosadeempleado"> <b> TELEFONO</b> </td>
+        <td class="cosadeempleado"> <b> RESPONSABLE</b> </td>
+    </tr>
+    </thead>
     {% for Empleado in lista_empleados %}
-    <li>
-        {{ Empleado.DNI }}: {{ Empleado.nombre }} {{ Empleado.apellido }}
-    </li>
+    <tr class="cosadeempleado">
+        <td class="cosadeempleado">{{ Empleado.DNI }}</td>
+        <td class="cosadeempleado">{{ Empleado.nombre}}</td>
+        <td class="cosadeempleado">{{ Empleado.apellido }}</td>
+        <td class="cosadeempleado">{{ Empleado.email }}</td>
+        <td class="cosadeempleado">{{ Empleado.telefono }}</td>
+        <td class="cosadeempleado">{{ Empleado.responsable }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock %}

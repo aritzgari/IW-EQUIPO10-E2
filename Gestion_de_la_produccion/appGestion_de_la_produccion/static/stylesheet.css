@@ -143,3 +143,54 @@ footer{
     margin-left:45px;
     margin-bottom:40px;
 }
+.cosadeempleado{
+    border:2px solid rgb(8,59,102);
+    font-size:25px;
+    margin-right:20px;
+    text-align:center;
+}
+#cosadeempleado{
+    border:4px solid rgb(8,59,102);
+    margin-left:10px;
+    margin-bottom:40px;
+}
+.cosadeproceso{
+    border:2px solid rgb(8,59,102);
+    font-size:20px;
+    margin-right:20px;
+    text-align:center;
+
+}
+
+#cosadeproceso{
+    border:4px solid rgb(8,59,102);
+
+}
+.contenido{
+    height:200px
+    overflow-y:auto;
+    width:100%;
+}
+
+
+
+#div1{
+    margin-left:45px;
+    height:100px;
+    width:1000px;
+    overflow:scroll;
+}
+
+#div2{
+    margin-left:10px;
+    height:100px;
+    width:1200px;
+    overflow:scroll;
+}
+#div3{
+    margin-left:20px;
+    height:100px;
+    width:1000px;
+    overflow:scroll;
+}
+
