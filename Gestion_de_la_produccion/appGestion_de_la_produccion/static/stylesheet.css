@@ -32,8 +32,7 @@ a{
     color: darkblue;
 }
 
-nav{
-
+#navgrande{
     background-color: blue;
     border-top: 2px solid black;
     border-left: 2px solid black;
@@ -43,14 +42,14 @@ nav{
     padding-bottom: 25px;
     padding-top: 10px;
 }
+
 .header_operario{
+    text-align:center;
     background-color: blue;
     border-top: 2px solid black;
     border-left: 2px solid black;
     border-right: 2px solid black;
     border-bottom: 2px solid black;
-    padding-bottom: 60px;
-    padding-top: 10px;
 }
 
 thead{
@@ -89,7 +88,7 @@ footer{
 .textofooter{
     color: white;
 }
-.enlaceaikerlan{
+.enlaceaicono{
     margin-left: 10px;
     float: left;
 }

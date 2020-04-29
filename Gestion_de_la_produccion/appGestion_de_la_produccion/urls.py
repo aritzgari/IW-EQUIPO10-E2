@@ -7,6 +7,7 @@ urlpatterns = [
     path ('responsable/empleado/',views.lista_empleados, name='lista_empleados'),
     path ('responsable/proceso/',views.lista_procesos, name='lista_procesos'),
     path ('responsable/',views.responsable, name='responsable'),
+    path ('empleado/<int:empleado_id>', views.detalle_empleado, name="detalleempleado"),
     path ('operario/',views.operario, name='operario'),
     path ('responsable/empleadoform/',views.show_empleado_form, name='empleadoform'),
     path ('responsable/post_empleado/',views.post_empleado_form, name='postempleadoform'),

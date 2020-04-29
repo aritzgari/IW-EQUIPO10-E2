@@ -1,13 +1,35 @@
 {% extends "PlantillaOperario.html"%}
 
 {% block contenido %}
-<h1>App de Procesos</h1>
-<h2>Listado de Procesos</h2>
-<ul>
+<h1>Listado de Procesos</h1>
+<div class="tablasueltas">
+<table id="cosadeproceso">
+    <thead>
+    <tr class="cosadeproceso">
+        <td class="cosadeproceso"> <b> COD. ORDEN </b> </td>
+        <td class="cosadeproceso"> <b> REF</b> </td>
+        <td class="cosadeproceso"> <b> COD. PROCESO</b> </td>
+        <td class="cosadeproceso"> <b> NOMBRE PROCESO</b> </td>
+        <td class="cosadeproceso"> <b> INICIO</b> </td>
+        <td class="cosadeproceso"> <b> FIN</b> </td>
+        <td class="cosadeproceso"> <b> EMPLEADOS ASIG.</b> </td>
+        <td class="cosadeproceso"> <b> EQUIPO</b> </td>
+    </tr>
+    </thead>
     {% for Proceso in lista_procesos %}
-    <li>
-        {{ Proceso.codigo_proceso }}: {{ Proceso.nombre_proceso }}
-    </li>
+    <tr class="cosadeproceso">
+        <td class="cosadeproceso">{{ Proceso.codigo_orden }}</td>
+        <td class="cosadeproceso">{{ Proceso.referencia}}</td>
+        <td class="cosadeproceso">{{ Proceso.codigo_proceso }}</td>
+        <td class="cosadeproceso">{{ Proceso.nombre_proceso }}</td>
+        <td class="cosadeproceso">{{ Proceso.inicio }}</td>
+        <td class="cosadeproceso">{{ Proceso.fin }}</td>
+        <td class="cosadeproceso">{% for ea in Proceso.empleados_asignados.all %}
+                {{ea.nombre}} {{ea.apellido}} </br>
+            {% endfor %}</td>
+        <td class="cosadeproceso">{{ Proceso.equipo.marca }} - {{ Proceso.equipo.modelo }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+</div>
 {% endblock %}
