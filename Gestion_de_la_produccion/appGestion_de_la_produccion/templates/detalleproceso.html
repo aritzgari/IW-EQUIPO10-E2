@@ -1,0 +1,35 @@
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
+<h1>Detalles</h1>
+<table class="tabladetalles">
+    <thead>
+    <tr>
+        <td>#ID</td>
+        <td>NOMBRE PROCESO</td>
+        <td>COD. ORDEN</td>
+        <td>REF</td>
+        <td>COD. PROCESO</td>
+        <td>INICIO</td>
+        <td>FIN</td>
+        <td>EMPLEADOS ASIG.</td>
+        <td>EQUIPO</td>
+
+    </tr>
+    </thead>
+    <tr>
+        <td>{{Datos.id}}</td>
+        <td>{{Datos.nombre_proceso}}</td>
+        <td>{{Datos.codigo_orden}}</td>
+        <td>{{Datos.referencia}}</td>
+        <td>{{Datos.codigo_proceso}}</td>
+        <td>{{Datos.inicio}}</td>
+        <td>{{Datos.fin}}</td>
+        <td>{% for ea in Datos.empleados_asignados.all %}
+            {{ea.nombre}} {{ea.apellido}} </br>
+            {% endfor %}</td>
+        <td>{{ Datos.equipo.marca }} - {{ Datos.equipo.modelo }}</td>
+
+    </tr>
+</table>
+{% endblock %}

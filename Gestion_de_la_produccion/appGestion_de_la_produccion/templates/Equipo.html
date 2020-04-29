@@ -8,22 +8,22 @@
 <table id="cosadeequipo">
     <thead>
         <tr class="cosadeequipo">
-          <td class="cosadeequipo"> <b> #ID </b> </td>
           <td class="cosadeequipo"> <b> Marca</b> </td>
           <td class="cosadeequipo"> <b> Modelo</b> </td>
           <td class="cosadeequipo"> <b> Categoría</b> </td>
           <td class="cosadeequipo"> <b> Fecha de adquisición</b> </td>
           <td class="cosadeequipo"> <b> Fecha de instalación</b> </td>
+          <td class="cosadeequipo"> <b>Detalles</b> </td>
         </tr>
     </thead>
     {% for Equipo in lista_equipos %}
     <tr class="cosadeequipo">
-        <td class="cosadeequipo">{{ Equipo.id }}</td>
         <td class="cosadeequipo">{{ Equipo.marca }}</td>
         <td class="cosadeequipo">{{ Equipo.modelo }}</td>
         <td class="cosadeequipo">{{ Equipo.categoria }}</td>
         <td class="cosadeequipo">{{ Equipo.fecha_adquisicion }}</td>
         <td class="cosadeequipo">{{ Equipo.fecha_instalacion }}</td>
+        <td class="cosadeequipo"><a href="/appGestion_de_la_produccion/responsable/equipo/{{ Equipo.id }}" title="Detalles">Ver detalles</a></td>
     </tr>
     {% endfor %}
 </table>

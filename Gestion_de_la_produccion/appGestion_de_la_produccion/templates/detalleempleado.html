@@ -1,14 +1,29 @@
-{% extends "PlantillaOperario.html"%}
+{% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
 <h1>Detalles</h1>
+<table class="tabladetalles">
+    <thead>
+    <tr>
+        <td>#ID</td>
+        <td>DNI</td>
+        <td>NOMBRE</td>
+        <td>APELLIDO</td>
+        <td>EMAIL</td>
+        <td>TELEFONO</td>
+        <td>RESPONSABLE</td>
 
-{{Datos.id}}
-{{Datos.responsable}}
-{{Datos.nombre}}
-{{Datos.apellido}}
-{{Datos.DNI}}
-{{Datos.email}}
-{{Datos.telefono}}
+    </tr>
+    </thead>
+    <tr>
+        <td>{{Datos.id}}</td>
+        <td>{{Datos.DNI}}</td>
+        <td>{{Datos.nombre}}</td>
+        <td>{{Datos.apellido}}</td>
+        <td>{{Datos.email}}</td>
+        <td>{{Datos.telefono}}</td>
+        <td>{{Datos.responsable}}</td>
 
+    </tr>
+</table>
 {% endblock %}

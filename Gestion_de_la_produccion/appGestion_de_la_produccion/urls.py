@@ -2,12 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #path ('',views.login, name='login'),
+    path ('',views.login, name='login'),
     path ('responsable/equipo/',views.lista_equipos, name='lista_equipos'),
     path ('responsable/empleado/',views.lista_empleados, name='lista_empleados'),
     path ('responsable/proceso/',views.lista_procesos, name='lista_procesos'),
     path ('responsable/',views.responsable, name='responsable'),
-    path ('empleado/<int:empleado_id>', views.detalle_empleado, name="detalleempleado"),
+    path ('responsable/empleado/<int:empleado_id>', views.detalle_empleado, name="detalleempleado"),
+    path ('responsable/equipo/<int:equipo_id>', views.detalle_equipo, name="detalleequipo"),
+    path ('responsable/proceso/<int:proceso_id>', views.detalle_proceso, name="detalleproceso"),
+    path ('operario/proceso/<int:proceso_id>', views.detalle_procesooperario, name="detalleprocesooperario"),
     path ('operario/',views.operario, name='operario'),
     path ('responsable/empleadoform/',views.show_empleado_form, name='empleadoform'),
     path ('responsable/post_empleado/',views.post_empleado_form, name='postempleadoform'),

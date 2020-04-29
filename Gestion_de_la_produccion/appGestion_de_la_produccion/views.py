@@ -4,6 +4,11 @@ from django.shortcuts import render
 from .forms import empleadoform, equipoform, procesoform
 from .models import Equipo, Empleado, Proceso
 
+#login
+
+def login(request):
+    return render(request,"Login.html")
+
 #Esto nos aporta la lista de equipos
 def lista_equipos(request):
     equipo = Equipo.objects.order_by("id")
@@ -15,17 +20,33 @@ def lista_empleados(request):
     context = {"lista_empleados": empleado}
     return render(request, "Empleado.html", context)
 
+def lista_procesos(request):
+    proceso = Proceso.objects.order_by("nombre_proceso")
+    context = {"lista_procesos": proceso}
+    return render(request, "Proceso.html", context)
+
 #work in progress
 def detalle_empleado(request, empleado_id):
     empleado= Empleado.objects.get(pk=empleado_id)
     context={"Datos":empleado}
     return render(request, "detalleempleado.html", context)
 
+def detalle_equipo(request, equipo_id):
+    equipo= Equipo.objects.get(pk=equipo_id)
+    context={"Datos":equipo}
+    return render(request, "detalleequipo.html", context)
 
-def lista_procesos(request):
-    proceso = Proceso.objects.order_by("nombre_proceso")
-    context = {"lista_procesos": proceso}
-    return render(request, "Proceso.html", context)
+def detalle_proceso(request, proceso_id):
+    proceso= Proceso.objects.get(pk=proceso_id)
+    context={"Datos":proceso}
+    return render(request, "detalleproceso.html", context)
+
+def detalle_procesooperario(request, proceso_id):
+    proceso= Proceso.objects.get(pk=proceso_id)
+    context={"Datos":proceso}
+    return render(request, "detalleprocesooperario.html", context)
+
+
 
 def responsable(request):
     equipo = Equipo.objects.order_by("modelo")

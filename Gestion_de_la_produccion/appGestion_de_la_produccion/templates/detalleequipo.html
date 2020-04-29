@@ -1,0 +1,27 @@
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
+<h1>Detalles</h1>
+<table class="tabladetalles">
+    <thead>
+    <tr>
+        <td>#ID</td>
+        <td>MARCA</td>
+        <td>MODELO</td>
+        <td>CATEGORIA</td>
+        <td>FECHA DE ADQUISICION</td>
+        <td>FECHA DE INSTALACION</td>
+
+    </tr>
+    </thead>
+    <tr>
+        <td>{{Datos.id}}</td>
+        <td>{{Datos.marca}}</td>
+        <td>{{Datos.modelo}}</td>
+        <td>{{Datos.categoria}}</td>
+        <td>{{Datos.fecha_adquisicion}}</td>
+        <td>{{Datos.fecha_instalacion}}</td>
+
+    </tr>
+</table>
+{% endblock %}

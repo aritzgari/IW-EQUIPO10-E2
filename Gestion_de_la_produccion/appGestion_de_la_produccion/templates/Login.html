@@ -10,8 +10,14 @@
     <div>
         <img class="imagenlogin" src="/static/Imagenes/Deustubular.png" alt="Logo de Deustubular">
         <fieldset class="fieldsetlogin">
-            <h1 id="leyenda">Iniciar sesión</h1>
-        {% block contenido %} {% endblock %}
+            <h1 id="leyenda">INICIAR SESION</h1></br>
+        {% block contenido %}
+            <a class="enlaceresp" href="/appGestion_de_la_produccion/responsable/">
+                <img class="botonresp" src="/static/Imagenes/responsable boton.png" width="150" height="75"> </a> <a class="enlaceope" href="/appGestion_de_la_produccion/operario/">
+            <img class="botonope" src="/static/Imagenes/operario boton.png" width="150" height="75"> </a>
+
+
+            {% endblock %}
         </fieldset>
     </div>
 </body>

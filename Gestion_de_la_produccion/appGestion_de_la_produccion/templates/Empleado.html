@@ -8,22 +8,22 @@
 <table id="cosadeempleado">
     <thead>
     <tr class="cosadeempleado">
-        <td class="cosadeempleado"> <b> DNI </b> </td>
         <td class="cosadeempleado"> <b> NOMBRE</b> </td>
         <td class="cosadeempleado"> <b> APELLIDO</b> </td>
+        <td class="cosadeempleado"> <b> DNI </b> </td>
         <td class="cosadeempleado"> <b> EMAIL</b> </td>
         <td class="cosadeempleado"> <b> TELEFONO</b> </td>
-        <td class="cosadeempleado"> <b> RESPONSABLE</b> </td>
+        <td class="cosadeempleado"> <b> DETALLES</b> </td>
     </tr>
     </thead>
     {% for Empleado in lista_empleados %}
     <tr class="cosadeempleado">
-        <td class="cosadeempleado">{{ Empleado.DNI }}</td>
         <td class="cosadeempleado">{{ Empleado.nombre}}</td>
         <td class="cosadeempleado">{{ Empleado.apellido }}</td>
+        <td class="cosadeempleado">{{ Empleado.DNI }}</td>
         <td class="cosadeempleado">{{ Empleado.email }}</td>
         <td class="cosadeempleado">{{ Empleado.telefono }}</td>
-        <td class="cosadeempleado">{{ Empleado.responsable }}</td>
+        <td class="cosadeempleado"><a href="/appGestion_de_la_produccion/responsable/empleado/{{ Empleado.id }}" title="Detalles">Ver detalles</a></td>
     </tr>
     {% endfor %}
 </table>
