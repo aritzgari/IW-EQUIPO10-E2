@@ -1,11 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import empleadoform, equipoform, procesoform
 from .models import Equipo, Empleado, Proceso
 
 #login
-
 def login(request):
     return render(request,"Login.html")
 
@@ -15,39 +14,43 @@ def lista_equipos(request):
     context = {"lista_equipos": equipo}
     return render(request, "Equipo.html", context)
 
+#Esto nos aporta la lista de empleados
 def lista_empleados(request):
     empleado = Empleado.objects.order_by("nombre")
     context = {"lista_empleados": empleado}
     return render(request, "Empleado.html", context)
 
+#Esto nos aporta la lista de procesos
 def lista_procesos(request):
     proceso = Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request, "Proceso.html", context)
 
-#work in progress
+#Detalles del empleado
 def detalle_empleado(request, empleado_id):
     empleado= Empleado.objects.get(pk=empleado_id)
     context={"Datos":empleado}
     return render(request, "detalleempleado.html", context)
 
+#Detalles del equipo
 def detalle_equipo(request, equipo_id):
     equipo= Equipo.objects.get(pk=equipo_id)
     context={"Datos":equipo}
     return render(request, "detalleequipo.html", context)
 
+#Detalles del proceso
 def detalle_proceso(request, proceso_id):
     proceso= Proceso.objects.get(pk=proceso_id)
     context={"Datos":proceso}
     return render(request, "detalleproceso.html", context)
 
+#Detalles del proceso desde el punto de vista del operario
 def detalle_procesooperario(request, proceso_id):
     proceso= Proceso.objects.get(pk=proceso_id)
     context={"Datos":proceso}
     return render(request, "detalleprocesooperario.html", context)
 
-
-
+#Pagina principal del responsable
 def responsable(request):
     equipo = Equipo.objects.order_by("modelo")
     empleado = Empleado.objects.order_by("nombre")
@@ -134,3 +137,25 @@ def post_proceso_form(request):
     if form.is_valid():
         form.save()
         return render(request, "Guardadocorrectamente.html")
+
+
+# Funcion para elimiar el equipo de detalles
+def eliminarequipo(req):
+    equipoBorrar = Equipo()
+    equipoBorrar.id = int(req.POST['idEquipo'])
+    equipoBorrar.delete()
+    return redirect('lista_equipos')
+
+# Funcion para elimiar el empleado de detalles
+def eliminarempleado(req):
+    empleadoBorrar = Empleado()
+    empleadoBorrar.id = int(req.POST['idEmpleado'])
+    empleadoBorrar.delete()
+    return redirect('lista_empleados')
+
+# Funcion para elimiar el proceso de detalles
+def eliminarproceso(req):
+    procesoBorrar = Proceso()
+    procesoBorrar.id = int(req.POST['idProceso'])
+    procesoBorrar.delete()
+    return redirect('lista_procesos')

@@ -1,7 +1,7 @@
 {% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
-<h1>Detalles</h1>
+<h1>Detalles del empleado</h1>
 <table class="tabladetalles">
     <thead>
     <tr>
@@ -26,4 +26,10 @@
 
     </tr>
 </table>
+<form action="{%url 'eliminarempleado'%}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="idEmpleado" value="{{Datos.id}}">
+    <input type="image" class="eliminar"  title="Eliminar empleado de la lista"
+        src="/static/Imagenes/delete.png" width="50" height="50" value="Eliminar">
+</form>
 {% endblock %}
