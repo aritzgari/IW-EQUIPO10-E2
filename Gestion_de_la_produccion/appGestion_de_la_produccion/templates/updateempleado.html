@@ -1,0 +1,19 @@
+{% extends "PlantillaHeaderFooter.html"%}
+
+{% block contenido %}
+<h1>Update de equipo</h1>
+<form action="{% url 'postempleadoform' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Datos del empleado</legend>
+        <input type="hidden" value="{{Datos.id}}">
+        <label>Nombre</label> <input type="text" name="nombre" value="{{Datos.nombre}}"></br>
+        <label>Apellido</label> <input type="text" name="apellido" value="{{Datos.apellido}}"></br>
+        <label>DNI</label> <input type="text" name="DNI" value="{{Datos.DNI}}"></br>
+        <label>Telefono</label> <input type="number" name="telefono" value="{{Datos.telefono}}"></br>
+        <label>Email</label> <input type="email" name="email" value="{{Datos.email}}"></br>
+
+        <input type="submit" value="ENVIAR">
+    </fieldset>
+</form>
+{% endblock %}

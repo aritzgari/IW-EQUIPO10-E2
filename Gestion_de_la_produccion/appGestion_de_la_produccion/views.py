@@ -159,3 +159,24 @@ def eliminarproceso(req):
     procesoBorrar.id = int(req.POST['idProceso'])
     procesoBorrar.delete()
     return redirect('lista_procesos')
+
+#Updatear el equipo
+def updateequipo(request, equipo_id):
+    equipo= Equipo.objects.get(pk=equipo_id)
+    context={"Datos":equipo}
+    return render(request, "updatequipo.html", context)
+
+#Updatear el empleado
+def updateempleado(request):
+    empleadoid = int(request.POST['idEmpleado'])
+    empleado= Empleado.objects.get(pk=empleadoid)
+    context={"Datos":empleado}
+    return render(request, "updateempleado.html", context)
+
+#Updatear el proceso
+def updateproceso(request, proceso_id):
+    proceso= Proceso.objects.get(pk=proceso_id)
+    context={"Datos":proceso}
+    return render(request, "updateproceso.html", context)
+
+
