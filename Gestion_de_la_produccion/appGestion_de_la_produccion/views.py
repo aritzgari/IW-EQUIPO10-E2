@@ -179,4 +179,32 @@ def updateproceso(request, proceso_id):
     context={"Datos":proceso}
     return render(request, "updateproceso.html", context)
 
+def post_empleado_form_update(req):
+    form = empleadoform(req.POST)
+    if form.is_valid():
+        empleado = Empleado()
+        empleado.id = int(req.POST["empleado_id"])
+        empleado.nombre = str(req.POST['nombre'])
+        empleado.apellido = str(req.POST['apellido'])
+        empleado.DNI = str(req.POST['DNI'])
+        empleado.email = str(req.POST['email'])
+        empleado.telefono = str(req.POST['telefono'])
+        empleado.responsable = bool(req.POST['responsable'])
+        empleado.save()
+        return render(req, "Guardadocorrectamente.html")
+
+def post_equipo_form_update(req):
+        form = equipoform(req.POST)
+        if form.is_valid():
+            equipo = Equipo()
+            empleado.id = int(req.POST["empleado_id"])
+            empleado.nombre = str(req.POST['nombre'])
+            empleado.apellido = str(req.POST['apellido'])
+            empleado.DNI = str(req.POST['DNI'])
+            empleado.email = str(req.POST['email'])
+            empleado.telefono = str(req.POST['telefono'])
+            empleado.responsable = bool(req.POST['responsable'])
+            empleado.save()
+            return render(req, "Guardadocorrectamente.html")
+
 

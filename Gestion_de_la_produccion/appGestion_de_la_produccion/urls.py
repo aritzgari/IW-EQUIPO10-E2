@@ -24,6 +24,9 @@ urlpatterns = [
     path ('responsable/post_equipo/',views.post_equipo_form, name='postequipoform'),
     path ('responsable/procesoform/',views.show_proceso_form, name='procesoform'),
     path ('responsable/post_proceso/',views.post_proceso_form, name='postprocesoform'),
+    path ('responsable/post_empleado_update/',views.post_empleado_form_update, name='postempleadoformupdate'),
+    path ('responsable/post_equipo_update/',views.post_equipo_form_update, name='postequipoformupdate'),
+    path ('responsable/post_proceso_update/',views.post_proceso_form_update, name='postprocesoformupdate'),
     path ('responsable/guardadocorrectamente/',views.guardadocorrectamente, name='guardadocorrectamente'),
 
 ]
