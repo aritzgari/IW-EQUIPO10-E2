@@ -10,8 +10,8 @@
         <label>Modelo</label> <input type="text" name="modelo" value="{{Datos.modelo}}"></br>
         <label>Marca</label> <input type="text" name="marca" value="{{Datos.marca}}"></br>
         <label>Categoria</label> <input type="text" name="categoria" value="{{Datos.categoria}}"></br>
-        <label>Fecha de adquisicion</label> <input type="date" name="fecha_adquisicion" value="{{Datos.fecha_adquisicion}}"></br>
-        <label>Fecha de instalacion</label> <input type="date" name="fecha_instalacion" value="{{Datos.fecha_instalacion}}"></br>
+        <label>Fecha de adquisicion</label> <input type="date" name="fecha_adquisicion" value="{{Datos.fecha_adquisicion|date:'yy-m-d'}}"></br>
+        <label>Fecha de instalacion</label> <input type="date" name="fecha_instalacion" value="{{Datos.fecha_instalacion|date:'yy-m-d'}}"></br>
         <input type="submit" value="ENVIAR">
     </fieldset>
 </form>
