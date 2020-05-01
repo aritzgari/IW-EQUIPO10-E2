@@ -179,7 +179,8 @@ def updateproceso(request):
     procesoid = int(request.POST['idProceso'])
     proceso= Proceso.objects.get(pk=procesoid)
     empleado= Empleado.objects.all()
-    context={"Datos":proceso,"Datos2":empleado}
+    equipo= Equipo.objects.all()
+    context={"Datos":proceso,"Datos2":empleado,"Datos3": equipo}
     return render(request, "updateproceso.html", context)
 
 #Formulario de update de empleados
@@ -212,20 +213,22 @@ def post_equipo_form_update(req):
             return render(req, "Guardadocorrectamente.html")
 
 #Formulario de update de procesos
-def post_proceso_form_update(req):
-    form = procesoform(req.POST)
+def post_proceso_form_update(request):
+    print(request.POST["empleados_asignados"])
+    form = procesoform(request.POST)
+
     if form.is_valid():
         proceso = Proceso()
-        proceso.id=int(req.POST["proceso_id"])
-        proceso.codigo_orden=str(req.POST["codigo_orden"])
-        proceso.codigo_orden=str(req.POST["codigo_proceso"])
-        proceso.nombre_proceso=str(req.POST["nombre_proceso"])
-        proceso.referencia=str(req.POST["referencia"])
-        proceso.inicio = req.POST['inicio']
-        proceso.fin = req.POST['fin']
-        proceso.empleados_asignados=req.POST["empleados_asignados"]
-        proceso.equipo=req.POST["equipo"]
+        proceso.id=int(request.POST["proceso_id"])
+        proceso.codigo_orden=str(request.POST["codigo_orden"])
+        proceso.codigo_proceso=int(request.POST["codigo_proceso"])
+        proceso.nombre_proceso=str(request.POST["nombre_proceso"])
+        proceso.referencia=str(request.POST["referencia"])
+        proceso.inicio = request.POST['inicio']
+        proceso.fin = request.POST['fin']
+        proceso.empleados_asignados.set(Empleado.objects.filter(pk__in=request.POST["empleados_asignados"]))
+        proceso.equipo=Equipo.objects.get(pk=request.POST["equipo"])
         proceso.save()
-        return render(req, "Guardadocorrectamente.html")
+        return render(request, "Guardadocorrectamente.html")
 
 
