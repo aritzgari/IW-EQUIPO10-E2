@@ -11,8 +11,18 @@
         <label>Codigo de proceso</label> <input type="text" name="codigo_proceso" value="{{Datos.codigo_proceso}}"></br>
         <label>Nombre del proceso</label> <input type="text" name="nombre_proceso" value="{{Datos.nombre_proceso}}"></br>
         <label>Referencia</label> <input type="text" name="referencia" value="{{Datos.referencia}}"></br>
-        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio}}"></br>
-        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin}}"></br>
+        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}"></br>
+        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}"></br>
+        <label>Empleados previamente asignados</label>
+        {% for ea in Datos.empleados_asignados.all %}
+        <h5>{{ea.nombre}} {{ea.apellido}}</h5></br>
+        {% endfor %}
+        <label>Empleados nuevos asignados</label>
+        <select name="empleados_asignados" multiple>{% for ea in Datos2.all %}
+        <option value="{{ea.id}}">{{ea.nombre}} {{ea.apellido}}</option>
+        {% endfor %}
+        </select></br>
+        <label>Equipo</label> <input type="text" name="equipo" value="{{ Datos.equipo.marca }} - {{ Datos.equipo.modelo }}"></br>
         <input type="submit" value="ENVIAR">
     </fieldset>
 </form>

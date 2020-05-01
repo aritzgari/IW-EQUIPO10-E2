@@ -178,7 +178,8 @@ def updateempleado(request):
 def updateproceso(request):
     procesoid = int(request.POST['idProceso'])
     proceso= Proceso.objects.get(pk=procesoid)
-    context={"Datos":proceso}
+    empleado= Empleado.objects.all()
+    context={"Datos":proceso,"Datos2":empleado}
     return render(request, "updateproceso.html", context)
 
 #Formulario de update de empleados
@@ -222,8 +223,8 @@ def post_proceso_form_update(req):
         proceso.referencia=str(req.POST["referencia"])
         proceso.inicio = req.POST['inicio']
         proceso.fin = req.POST['fin']
-
-
+        proceso.empleados_asignados=req.POST["empleados_asignados"]
+        proceso.equipo=req.POST["equipo"]
         proceso.save()
         return render(req, "Guardadocorrectamente.html")
 
