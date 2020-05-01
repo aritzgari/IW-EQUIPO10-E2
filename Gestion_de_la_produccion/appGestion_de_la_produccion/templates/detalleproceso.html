@@ -39,4 +39,11 @@
     <input type="image" class="eliminar"  title="Eliminar proceso de la lista"
         src="/static/Imagenes/delete.png" width="50" height="50" value="Eliminar">
 </form>
+
+<form action="{%url 'updateproceso' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="idProceso" value="{{Datos.id}}">
+    <input type="image" title="Modificar proceso de la lista"
+        src="/static/Imagenes/editar.png" width="50" height="50" value="Eliminar">
+</form>
 {% endblock %}

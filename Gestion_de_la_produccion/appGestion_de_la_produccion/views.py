@@ -161,10 +161,11 @@ def eliminarproceso(req):
     return redirect('lista_procesos')
 
 #Updatear el equipo
-def updateequipo(request, equipo_id):
-    equipo= Equipo.objects.get(pk=equipo_id)
+def updateequipo(request):
+    equipoid = int(request.POST['idEquipo'])
+    equipo= Equipo.objects.get(pk=equipoid)
     context={"Datos":equipo}
-    return render(request, "updatequipo.html", context)
+    return render(request, "updateequipo.html", context)
 
 #Updatear el empleado
 def updateempleado(request):
@@ -174,11 +175,13 @@ def updateempleado(request):
     return render(request, "updateempleado.html", context)
 
 #Updatear el proceso
-def updateproceso(request, proceso_id):
-    proceso= Proceso.objects.get(pk=proceso_id)
+def updateproceso(request):
+    procesoid = int(request.POST['idProceso'])
+    proceso= Proceso.objects.get(pk=procesoid)
     context={"Datos":proceso}
     return render(request, "updateproceso.html", context)
 
+#Formulario de update de empleados
 def post_empleado_form_update(req):
     form = empleadoform(req.POST)
     if form.is_valid():
@@ -193,18 +196,28 @@ def post_empleado_form_update(req):
         empleado.save()
         return render(req, "Guardadocorrectamente.html")
 
+#Formulario de update de empleados
 def post_equipo_form_update(req):
         form = equipoform(req.POST)
         if form.is_valid():
             equipo = Equipo()
-            empleado.id = int(req.POST["empleado_id"])
-            empleado.nombre = str(req.POST['nombre'])
-            empleado.apellido = str(req.POST['apellido'])
-            empleado.DNI = str(req.POST['DNI'])
-            empleado.email = str(req.POST['email'])
-            empleado.telefono = str(req.POST['telefono'])
-            empleado.responsable = bool(req.POST['responsable'])
-            empleado.save()
+            equipo.id = int(req.POST["equipo_id"])
+            equipo.modelo = str(req.POST['modelo'])
+            equipo.marca = str(req.POST['marca'])
+            equipo.categoria = str(req.POST['categoria'])
+            equipo.fecha_adquisicion = req.POST['fecha_adquisicion']
+            equipo.fecha_instalacion = req.POST['fecha_instalacion']
+            equipo.save()
             return render(req, "Guardadocorrectamente.html")
+
+
+def post_proceso_form_update(req):
+    form = procesoform(req.POST)
+    if form.is_valid():
+        proceso = Proceso()
+        proceso.id=int(req.POST["proceso_id"])
+
+        proceso.save()
+        return render(req, "Guardadocorrectamente.html")
 
 

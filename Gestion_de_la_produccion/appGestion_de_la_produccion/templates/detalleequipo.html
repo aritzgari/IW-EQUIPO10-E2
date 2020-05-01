@@ -32,4 +32,11 @@
         src="/static/Imagenes/delete.png" width="50" height="50" value="Eliminar">
 </form>
 
+<form action="{%url 'updateequipo' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="idEquipo" value="{{Datos.id}}">
+    <input type="image" title="Modificar equipo de la lista"
+        src="/static/Imagenes/editar.png" width="50" height="50" value="Eliminar">
+</form>
+
 {% endblock %}
