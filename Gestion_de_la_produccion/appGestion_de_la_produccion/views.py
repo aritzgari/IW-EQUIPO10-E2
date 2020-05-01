@@ -210,12 +210,19 @@ def post_equipo_form_update(req):
             equipo.save()
             return render(req, "Guardadocorrectamente.html")
 
-
+#Formulario de update de procesos
 def post_proceso_form_update(req):
     form = procesoform(req.POST)
     if form.is_valid():
         proceso = Proceso()
         proceso.id=int(req.POST["proceso_id"])
+        proceso.codigo_orden=str(req.POST["codigo_orden"])
+        proceso.codigo_orden=str(req.POST["codigo_proceso"])
+        proceso.nombre_proceso=str(req.POST["nombre_proceso"])
+        proceso.referencia=str(req.POST["referencia"])
+        proceso.inicio = req.POST['inicio']
+        proceso.fin = req.POST['fin']
+
 
         proceso.save()
         return render(req, "Guardadocorrectamente.html")

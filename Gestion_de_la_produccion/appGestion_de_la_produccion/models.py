@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+#Modelo del equipo
 class Equipo(models.Model):
     modelo = models.CharField(max_length=25)
     marca = models.CharField(max_length=25)
@@ -11,6 +11,7 @@ class Equipo(models.Model):
     def __str__(self):
         return f"id ={self.id}, modelo={self.modelo}, marca={self.marca}, categoria={self.categoria}, fecha_adquisicion={self.fecha_adquisicion}, fecha_instalacion={self.fecha_instalacion}"
 
+#Modelo del empleado
 class Empleado(models.Model):
     nombre = models.CharField(max_length=50)
     DNI = models.CharField(max_length=9)
@@ -22,12 +23,7 @@ class Empleado(models.Model):
     def __str__(self):
         return f"id ={self.id},responsable={self.responsable}, nombre={self.nombre}, apellido={self.apellido}, DNI={self.DNI}, email={self.email}, telefono={self.telefono}"
 
-# class Login(models.Model):
-#     usuario=models.ForeignKey(Empleado,on_delete=models.CASCADE, related_name="email")
-#     contrasena=models.ForeignKey(Empleado,on_delete=models.CASCADE,related_name="DNI")
-#     def __str__(self):
-#         return f"id ={self.id},usuario={self.usuario},contraseña={self.contraseña}"
-
+#Modelo del proceso
 class Proceso(models.Model):
     empleados_asignados = models.ManyToManyField(Empleado)
     equipo=models.ForeignKey(Equipo, on_delete=models.CASCADE)

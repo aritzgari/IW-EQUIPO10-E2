@@ -2,16 +2,17 @@
 
 {% block contenido %}
 <h1>Update de equipo</h1>
-<form action="{% url 'postequipoformupdate' %}" method="post">
+<form action="{% url 'postprocesoformupdate' %}" method="post">
     {% csrf_token %}
     <fieldset>
-        <legend>Datos del Equipo</legend>
-        <input type="hidden" name="equipo_id" value="{{Datos.id}}">
-        <label>Modelo</label> <input type="text" name="modelo" value="{{Datos.modelo}}"></br>
-        <label>Marca</label> <input type="text" name="marca" value="{{Datos.marca}}"></br>
-        <label>Categoria</label> <input type="text" name="categoria" value="{{Datos.categoria}}"></br>
-        <label>Fecha de adquisicion</label> <input type="date" name="fecha_adquisicion" value="{{Datos.fecha_adquisicion}}"></br>
-        <label>Fecha de instalacion</label> <input type="date" name="fecha_instalacion" value="{{Datos.fecha_instalacion}}"></br>
+        <legend>Datos del Proceso</legend>
+        <input type="hidden" name="proceso_id" value="{{Datos.id}}">
+        <label>Codigo de la orden</label> <input type="text" name="codigo_orden" value="{{Datos.codigo_orden}}"></br>
+        <label>Codigo de proceso</label> <input type="text" name="codigo_proceso" value="{{Datos.codigo_proceso}}"></br>
+        <label>Nombre del proceso</label> <input type="text" name="nombre_proceso" value="{{Datos.nombre_proceso}}"></br>
+        <label>Referencia</label> <input type="text" name="referencia" value="{{Datos.referencia}}"></br>
+        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio}}"></br>
+        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin}}"></br>
         <input type="submit" value="ENVIAR">
     </fieldset>
 </form>
