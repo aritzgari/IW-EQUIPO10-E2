@@ -265,20 +265,26 @@ def post_proceso_form_update(request):
 def updateprocesooperario(request):
     procesoid = int(request.POST['idProceso'])
     proceso = Proceso.objects.get(pk=procesoid)
-    context = {"Datos": proceso}
+
+    empleado = Empleado.objects.all()
+    equipo = Equipo.objects.all()
+    context = {"Datos": proceso, "Datos2": empleado, "Datos3": equipo}
     return render(request, "updateprocesooperario.html", context)
 
 
 # Formulario de update de procesos desde operario
 def post_proceso_form_update_operario(request):
-    procesoupdate = Proceso.objects.get(pk=request.POST["idProcesoop"])
-    procesoupdate.codigo_orden = str(procesoupdate.codigo_orden(pk=request.POST["idProcesoop"]))
-    procesoupdate.codigo_proceso = procesoupdate.codigo_proceso(pk=request.POST["idProcesoop"])
-    procesoupdate.nombre_proceso = procesoupdate.nombre_proceso(pk=request.POST["idProcesoop"])
-    procesoupdate.referencia = procesoupdate.referencia(pk=request.POST["idProcesoop"])
-    procesoupdate.inicio = request.POST['inicio']
-    procesoupdate.fin = request.POST['fin']
-    procesoupdate.empleados_asignados = procesoupdate.empleados_asignados(pk=request.POST["idProcesoop"])
-    procesoupdate.equipo = procesoupdate.equipo(pk=request.POST["idProcesoop"])
-    procesoupdate.save()
-    return render(request, "Guardadocorrectamente.html")
+    form = procesoform(request.POST)
+    if form.is_valid():
+        procesoupdate = Proceso.objects.get(pk=request.POST["proceso_id"])
+        procesoupdate.codigo_orden = str(request.POST["codigo_orden"])
+        procesoupdate.codigo_proceso = int(request.POST["codigo_proceso"])
+        procesoupdate.nombre_proceso = str(request.POST["nombre_proceso"])
+        procesoupdate.referencia = str(request.POST["referencia"])
+        procesoupdate.inicio = request.POST['inicio']
+        procesoupdate.fin = request.POST['fin']
+        procesoupdate.empleados_asignados.set(
+            Empleado.objects.filter(id__in=request.POST.getlist("empleados_asignados")))
+        procesoupdate.equipo = (Equipo.objects.get(pk=request.POST["equipo"]))
+        procesoupdate.save()
+        return render(request, "guardadocorrectamenteoperario.html")
