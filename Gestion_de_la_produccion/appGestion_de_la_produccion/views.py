@@ -232,4 +232,19 @@ def post_proceso_form_update(request):
         procesoupdate.save()
         return render(request, "Guardadocorrectamente.html")
 
+#Updatear el proceso desde operario
+def updateprocesooperario(request):
+    procesoid = int(request.POST['idProceso'])
+    proceso= Proceso.objects.get(pk=procesoid)
+    context={"Datos":proceso}
+    return render(request, "updateprocesooperario.html", context)
 
+#Formulario de update de procesos desde operario
+def post_proceso_form_update_operario(request):
+    form = procesoform(request.POST)
+    if form.is_valid():
+        procesoupdate = Proceso.objects.get(pk=request.POST["idProceso"])
+        procesoupdate.inicio = request.POST['inicio']
+        procesoupdate.fin = request.POST['fin']
+        procesoupdate.save()
+        return render(request, "Guardadocorrectamente.html")

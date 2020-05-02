@@ -1,0 +1,15 @@
+{% extends "PlantillaOperario.html"%}
+
+{% block contenido %}
+<h1>Update de equipo</h1>
+<form action="{% url 'postprocesoformupdateoperario' %}" method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Datos del Proceso</legend>
+        <input type="hidden" name="idProceso" value="{{Datos.id}}">
+        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}"></br>
+        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}"></br>
+        <input type="submit" value="ENVIAR">
+    </fieldset>
+</form>
+{% endblock %}

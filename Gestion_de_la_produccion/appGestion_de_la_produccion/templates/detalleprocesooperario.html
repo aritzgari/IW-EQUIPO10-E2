@@ -29,7 +29,12 @@
             {{ea.nombre}} {{ea.apellido}} </br>
             {% endfor %}</td>
         <td>{{ Datos.equipo.marca }} - {{ Datos.equipo.modelo }}</td>
-
     </tr>
 </table>
+<form action="{%url 'updateprocesooperario' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="idProceso" value="{{Datos.id}}">
+    <input type="image" class="imagenmodificar" title="Modificar proceso de la lista"
+        src="/static/Imagenes/editar.png" width="50" height="50" value="Update">
+</form>
 {% endblock %}

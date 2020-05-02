@@ -209,8 +209,11 @@ footer{
 }
 .eliminar{
     margin-top:20px;
-    margin-left:10px;
+    margin-right:485px;
+    float:right;
 }
-.updates{
-    margin-left:20px;
+.imagenmodificar{
+    margin-left:485px;
+    margin-top:3px;
+
 }

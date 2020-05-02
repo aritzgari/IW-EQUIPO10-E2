@@ -35,8 +35,8 @@
 <form action="{%url 'updateequipo' %}" method="POST">
     {% csrf_token %}
     <input type="hidden" name="idEquipo" value="{{Datos.id}}">
-    <input type="image" title="Modificar equipo de la lista"
-        src="/static/Imagenes/editar.png" width="50" height="50" value="Eliminar">
+    <input type="image" class="imagenmodificar"  title="Modificar equipo de la lista"
+        src="/static/Imagenes/editar.png" width="50" height="50" value="Update">
 </form>
 
 {% endblock %}
