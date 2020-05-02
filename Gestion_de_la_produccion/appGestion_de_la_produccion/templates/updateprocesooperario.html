@@ -7,25 +7,59 @@
     <fieldset>
         <legend>Datos del Proceso</legend>
         <input type="hidden" name="proceso_id" value="{{Datos.id}}">
-        <label>Codigo de la orden</label> <input type="text" name="codigo_orden" value="{{Datos.codigo_orden}}"></br>
-        <label>Codigo de proceso</label> <input type="number" name="codigo_proceso" value="{{Datos.codigo_proceso}}"></br>
-        <label>Nombre del proceso</label> <input type="text" name="nombre_proceso" value="{{Datos.nombre_proceso}}"></br>
-        <label>Referencia</label> <input type="text" name="referencia" value="{{Datos.referencia}}"></br>
-        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}"></br>
-        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}"></br>
+        <label>Codigo de la orden</label>
+        <table>
+            <tr>
+                <td>{{ Datos.codigo_orden }}</td>
+            </tr>
+        </table>
+        <input type="hidden" name="codigo_orden" value="{{Datos.codigo_orden}}">
+        <label>Codigo de proceso</label>
+        <table>
+            <tr>
+                <td>{{ Datos.codigo_proceso }}</td>
+            </tr>
+        </table>
+        <input type="hidden" name="codigo_proceso" value="{{Datos.codigo_proceso}}">
+        <label>Nombre del proceso</label>
+        <table>
+            <tr>
+                <td>{{ Datos.nombre_proceso }}</td>
+            </tr>
+        </table>
+        <input type="hidden" name="nombre_proceso" value="{{Datos.nombre_proceso}}">
+        <label>Referencia</label>
+        <table>
+            <tr>
+                <td>{{ Datos.referencia }}</td>
+            </tr>
+        </table>
+        <input type="hidden" name="referencia" value="{{Datos.referencia}}">
+        <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}">
+        <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}">
         </br>
         <label>Empleados asignados</label>
-        <select name="empleados_asignados" multiple>
-        {% for ea in Datos2 %}
-        <option value="{{ea.id}}" {% if ea in Datos.empleados_asignados.all %} selected {%endif%}>{{ea}} </option>
+        {% for ea in Datos.empleados_asignados.all %}
+        <input type="hidden" name="empleados_asignados" value="{{ea.id}}">
         {% endfor %}
-        </select></br>
+        <table>
+            <tr>
+                <td>{% for ea in Datos.empleados_asignados.all %}
+                    {{ea.nombre}} {{ea.apellido}} </br>
+                    {% endfor %}</td>
+            </tr>
+        </table>
+
         <label>Equipo</label>
-        <select name="equipo">
-            {% for ea in Datos3 %}
-            <option value="{{ea.id}}" {% if ea.id == Datos.equipo.id %} selected {%endif%}>{{ea}} </option>
-            {% endfor %}
-        </select></br>
+
+        <input type="hidden" name="equipo" value="{{Datos.equipo.id}}">
+
+        <table>
+            <tr>
+                <td>{{ Datos.equipo.marca }} - {{ Datos.equipo.modelo }}</td>
+            </tr>
+        </table>
+    </br>
         <input type="submit" value="ENVIAR">
     </fieldset>
 </form>
