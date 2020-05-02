@@ -1,7 +1,7 @@
 {% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
-<h1>Update de equipo</h1>
+<h1>Update de proceso</h1>
 <form action="{% url 'postprocesoformupdate' %}" method="post">
     {% csrf_token %}
     <fieldset>
@@ -13,8 +13,8 @@
         <label>Referencia</label> <input type="text" name="referencia" value="{{Datos.referencia}}"></br>
         <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}"></br>
         <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}"></br>
+        </br>
         <label>Empleados asignados</label>
-        <h5>*Recuerda que un responsable no puede ser asignado como empleado.</h5>
         <select name="empleados_asignados" multiple>
         {% for ea in Datos2 %}
         <option value="{{ea.id}}" {% if ea in Datos.empleados_asignados.all %} selected {%endif%}>{{ea}} </option>

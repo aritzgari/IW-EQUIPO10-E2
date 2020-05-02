@@ -4,53 +4,62 @@ from django.shortcuts import render, redirect
 from .forms import empleadoform, equipoform, procesoform
 from .models import Equipo, Empleado, Proceso
 
-#login
-def login(request):
-    return render(request,"Login.html")
 
-#Esto nos aporta la lista de equipos
+# login
+def login(request):
+    return render(request, "Login.html")
+
+
+# Esto nos aporta la lista de equipos
 def lista_equipos(request):
     equipo = Equipo.objects.order_by("id")
     context = {"lista_equipos": equipo}
     return render(request, "Equipo.html", context)
 
-#Esto nos aporta la lista de empleados
+
+# Esto nos aporta la lista de empleados
 def lista_empleados(request):
     empleado = Empleado.objects.order_by("nombre")
     context = {"lista_empleados": empleado}
     return render(request, "Empleado.html", context)
 
-#Esto nos aporta la lista de procesos
+
+# Esto nos aporta la lista de procesos
 def lista_procesos(request):
     proceso = Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request, "Proceso.html", context)
 
-#Detalles del empleado
+
+# Detalles del empleado
 def detalle_empleado(request, empleado_id):
-    empleado= Empleado.objects.get(pk=empleado_id)
-    context={"Datos":empleado}
+    empleado = Empleado.objects.get(pk=empleado_id)
+    context = {"Datos": empleado}
     return render(request, "detalleempleado.html", context)
 
-#Detalles del equipo
+
+# Detalles del equipo
 def detalle_equipo(request, equipo_id):
-    equipo= Equipo.objects.get(pk=equipo_id)
-    context={"Datos":equipo}
+    equipo = Equipo.objects.get(pk=equipo_id)
+    context = {"Datos": equipo}
     return render(request, "detalleequipo.html", context)
 
-#Detalles del proceso
+
+# Detalles del proceso
 def detalle_proceso(request, proceso_id):
-    proceso= Proceso.objects.get(pk=proceso_id)
-    context={"Datos":proceso}
+    proceso = Proceso.objects.get(pk=proceso_id)
+    context = {"Datos": proceso}
     return render(request, "detalleproceso.html", context)
 
-#Detalles del proceso desde el punto de vista del operario
+
+# Detalles del proceso desde el punto de vista del operario
 def detalle_procesooperario(request, proceso_id):
-    proceso= Proceso.objects.get(pk=proceso_id)
-    context={"Datos":proceso}
+    proceso = Proceso.objects.get(pk=proceso_id)
+    context = {"Datos": proceso}
     return render(request, "detalleprocesooperario.html", context)
 
-#Pagina principal del responsable
+
+# Vista principal del operario
 def responsable(request):
     equipo = Equipo.objects.order_by("modelo")
     empleado = Empleado.objects.order_by("nombre")
@@ -58,14 +67,17 @@ def responsable(request):
     context = {"lista_equipos": equipo, "lista_empleados": empleado, "lista_procesos": proceso}
     return render(request, "Responsable.html", context)
 
+# Vista principal del operario
 def operario(request):
     proceso = Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request, "Operario.html", context)
 
+#Vista del formulario para añadir empleados
 def formularioempleado(request):
     return render(request, "FormularioEmpleado.html")
 
+#Vista para añadir los datos de los empleados a la base de datos
 def post_formularioempleado(request):
     nombre = request.POST["nombre"]
     apellido = request.POST["apellido"]
@@ -76,9 +88,11 @@ def post_formularioempleado(request):
     empleado.save()
     return render(request, "Guardadocorrectamente.html")
 
+#Vista del formulario para añadir equipos
 def formularioequipo(request):
     return render(request, "FormularioEquipo.html")
 
+#Vista para añadir los datos de los empleados a la base de datos
 def post_formularioequipo(request):
     marca = request.POST["marca"]
     modelo = request.POST["modelo"]
@@ -90,13 +104,16 @@ def post_formularioequipo(request):
     equipo.save()
     return render(request, "Guardadocorrectamente.html")
 
+#Cuando los datos introducidos son correctos nos permitirá ver esta vista
 def guardadocorrectamente(request):
     return render(request, "Guardadocorrectamente.html")
 
+#Nos permite ver el formulario para añadir empleados
 def show_empleado_form(request):
     form = empleadoform()
     return render(request, "empleado_form.html", {"form": form})
 
+#Nos permite traer la información introducida en el formulario de añadir empleados
 def post_empleado_form(request):
     form = empleadoform(request.POST)
     if form.is_valid():
@@ -110,10 +127,12 @@ def post_empleado_form(request):
         empleado.save()
         return render(request, "Guardadocorrectamente.html")
 
+#Nos permite ver el formulario para añadir equipos
 def show_equipo_form(request):
     form = equipoform()
     return render(request, "equipo_form.html", {"form": form})
 
+#Nos permite traer la información introducida en el formulario de añadir equipos
 def post_equipo_form(request):
     form = equipoform(request.POST)
     if form.is_valid():
@@ -127,10 +146,12 @@ def post_equipo_form(request):
         equipo.save()
         return render(request, "Guardadocorrectamente.html")
 
+#Nos permite ver el formulario para añadir procesos
 def show_proceso_form(request):
     form = procesoform()
     return render(request, "proceso_form.html", {"form": form})
 
+#Nos permite traer la información introducida en el formulario de añadir procesos
 def post_proceso_form(request):
     form = procesoform(request.POST)
 
@@ -146,12 +167,14 @@ def eliminarequipo(req):
     equipoBorrar.delete()
     return redirect('lista_equipos')
 
+
 # Funcion para elimiar el empleado de detalles
 def eliminarempleado(req):
     empleadoBorrar = Empleado()
     empleadoBorrar.id = int(req.POST['idEmpleado'])
     empleadoBorrar.delete()
     return redirect('lista_empleados')
+
 
 # Funcion para elimiar el proceso de detalles
 def eliminarproceso(req):
@@ -160,31 +183,35 @@ def eliminarproceso(req):
     procesoBorrar.delete()
     return redirect('lista_procesos')
 
-#Updatear el equipo
+
+# Updatear el equipo
 def updateequipo(request):
     equipoid = int(request.POST['idEquipo'])
-    equipo= Equipo.objects.get(pk=equipoid)
-    context={"Datos":equipo}
+    equipo = Equipo.objects.get(pk=equipoid)
+    context = {"Datos": equipo}
     return render(request, "updateequipo.html", context)
 
-#Updatear el empleado
+
+# Updatear el empleado
 def updateempleado(request):
     empleadoid = int(request.POST['idEmpleado'])
-    empleado= Empleado.objects.get(pk=empleadoid)
-    context={"Datos":empleado}
+    empleado = Empleado.objects.get(pk=empleadoid)
+    context = {"Datos": empleado}
     return render(request, "updateempleado.html", context)
 
-#Updatear el proceso
+
+# Updatear el proceso
 def updateproceso(request):
     procesoid = int(request.POST['idProceso'])
-    proceso= Proceso.objects.get(pk=procesoid)
+    proceso = Proceso.objects.get(pk=procesoid)
 
-    empleado= Empleado.objects.all()
-    equipo= Equipo.objects.all()
-    context={"Datos":proceso,"Datos2":empleado,"Datos3": equipo}
+    empleado = Empleado.objects.all()
+    equipo = Equipo.objects.all()
+    context = {"Datos": proceso, "Datos2": empleado, "Datos3": equipo}
     return render(request, "updateproceso.html", context)
 
-#Formulario de update de empleados
+
+# Formulario de update de empleados
 def post_empleado_form_update(req):
     form = empleadoform(req.POST)
     if form.is_valid():
@@ -199,52 +226,59 @@ def post_empleado_form_update(req):
         empleado.save()
         return render(req, "Guardadocorrectamente.html")
 
-#Formulario de update de empleados
+
+# Formulario de update de empleados
 def post_equipo_form_update(req):
-        form = equipoform(req.POST)
-        if form.is_valid():
-            equipo = Equipo()
-            equipo.id = int(req.POST["equipo_id"])
-            equipo.modelo = str(req.POST['modelo'])
-            equipo.marca = str(req.POST['marca'])
-            equipo.categoria = str(req.POST['categoria'])
-            equipo.fecha_adquisicion = req.POST['fecha_adquisicion']
-            equipo.fecha_instalacion = req.POST['fecha_instalacion']
-            equipo.save()
-            return render(req, "Guardadocorrectamente.html")
+    form = equipoform(req.POST)
+    if form.is_valid():
+        equipo = Equipo()
+        equipo.id = int(req.POST["equipo_id"])
+        equipo.modelo = str(req.POST['modelo'])
+        equipo.marca = str(req.POST['marca'])
+        equipo.categoria = str(req.POST['categoria'])
+        equipo.fecha_adquisicion = req.POST['fecha_adquisicion']
+        equipo.fecha_instalacion = req.POST['fecha_instalacion']
+        equipo.save()
+        return render(req, "Guardadocorrectamente.html")
 
-#Formulario de update de procesos
+
+# Formulario de update de procesos
 def post_proceso_form_update(request):
-
     form = procesoform(request.POST)
 
     if form.is_valid():
-
         procesoupdate = Proceso.objects.get(pk=request.POST["proceso_id"])
-        procesoupdate.codigo_orden=str(request.POST["codigo_orden"])
-        procesoupdate.codigo_proceso=int(request.POST["codigo_proceso"])
-        procesoupdate.nombre_proceso=str(request.POST["nombre_proceso"])
-        procesoupdate.referencia=str(request.POST["referencia"])
+        procesoupdate.codigo_orden = str(request.POST["codigo_orden"])
+        procesoupdate.codigo_proceso = int(request.POST["codigo_proceso"])
+        procesoupdate.nombre_proceso = str(request.POST["nombre_proceso"])
+        procesoupdate.referencia = str(request.POST["referencia"])
         procesoupdate.inicio = request.POST['inicio']
         procesoupdate.fin = request.POST['fin']
-        procesoupdate.empleados_asignados.set(Empleado.objects.filter(id__in=request.POST.getlist("empleados_asignados")))
-        procesoupdate.equipo=(Equipo.objects.get(pk=request.POST["equipo"]))
+        procesoupdate.empleados_asignados.set(
+            Empleado.objects.filter(id__in=request.POST.getlist("empleados_asignados")))
+        procesoupdate.equipo = (Equipo.objects.get(pk=request.POST["equipo"]))
         procesoupdate.save()
         return render(request, "Guardadocorrectamente.html")
 
-#Updatear el proceso desde operario
+
+# Updatear el proceso desde operario
 def updateprocesooperario(request):
     procesoid = int(request.POST['idProceso'])
-    proceso= Proceso.objects.get(pk=procesoid)
-    context={"Datos":proceso}
+    proceso = Proceso.objects.get(pk=procesoid)
+    context = {"Datos": proceso}
     return render(request, "updateprocesooperario.html", context)
 
-#Formulario de update de procesos desde operario
+
+# Formulario de update de procesos desde operario
 def post_proceso_form_update_operario(request):
-    form = procesoform(request.POST)
-    if form.is_valid():
-        procesoupdate = Proceso.objects.get(pk=request.POST["idProceso"])
-        procesoupdate.inicio = request.POST['inicio']
-        procesoupdate.fin = request.POST['fin']
-        procesoupdate.save()
-        return render(request, "Guardadocorrectamente.html")
+    procesoupdate = Proceso.objects.get(pk=request.POST["idProcesoop"])
+    procesoupdate.codigo_orden = str(procesoupdate.codigo_orden(pk=request.POST["idProcesoop"]))
+    procesoupdate.codigo_proceso = procesoupdate.codigo_proceso(pk=request.POST["idProcesoop"])
+    procesoupdate.nombre_proceso = procesoupdate.nombre_proceso(pk=request.POST["idProcesoop"])
+    procesoupdate.referencia = procesoupdate.referencia(pk=request.POST["idProcesoop"])
+    procesoupdate.inicio = request.POST['inicio']
+    procesoupdate.fin = request.POST['fin']
+    procesoupdate.empleados_asignados = procesoupdate.empleados_asignados(pk=request.POST["idProcesoop"])
+    procesoupdate.equipo = procesoupdate.equipo(pk=request.POST["idProcesoop"])
+    procesoupdate.save()
+    return render(request, "Guardadocorrectamente.html")

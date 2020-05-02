@@ -1,7 +1,7 @@
 {% extends "PlantillaHeaderFooter.html"%}
 
 {% block contenido %}
-<h1>Update de equipo</h1>
+<h1>Update de empleado</h1>
 <form action="{% url 'postempleadoformupdate' %}" method="post">
     {% csrf_token %}
     <fieldset>
