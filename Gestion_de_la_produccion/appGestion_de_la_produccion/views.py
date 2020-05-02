@@ -178,6 +178,7 @@ def updateempleado(request):
 def updateproceso(request):
     procesoid = int(request.POST['idProceso'])
     proceso= Proceso.objects.get(pk=procesoid)
+
     empleado= Empleado.objects.all()
     equipo= Equipo.objects.all()
     context={"Datos":proceso,"Datos2":empleado,"Datos3": equipo}
@@ -214,21 +215,21 @@ def post_equipo_form_update(req):
 
 #Formulario de update de procesos
 def post_proceso_form_update(request):
-    print(request.POST["empleados_asignados"])
+
     form = procesoform(request.POST)
 
     if form.is_valid():
-        proceso = Proceso()
-        proceso.id=int(request.POST["proceso_id"])
-        proceso.codigo_orden=str(request.POST["codigo_orden"])
-        proceso.codigo_proceso=int(request.POST["codigo_proceso"])
-        proceso.nombre_proceso=str(request.POST["nombre_proceso"])
-        proceso.referencia=str(request.POST["referencia"])
-        proceso.inicio = request.POST['inicio']
-        proceso.fin = request.POST['fin']
-        proceso.empleados_asignados.set(Empleado.objects.filter(pk__in=request.POST["empleados_asignados"]))
-        proceso.equipo=Equipo.objects.get(pk=request.POST["equipo"])
-        proceso.save()
+
+        procesoupdate = Proceso.objects.get(pk=request.POST["proceso_id"])
+        procesoupdate.codigo_orden=str(request.POST["codigo_orden"])
+        procesoupdate.codigo_proceso=int(request.POST["codigo_proceso"])
+        procesoupdate.nombre_proceso=str(request.POST["nombre_proceso"])
+        procesoupdate.referencia=str(request.POST["referencia"])
+        procesoupdate.inicio = request.POST['inicio']
+        procesoupdate.fin = request.POST['fin']
+        procesoupdate.empleados_asignados.set(Empleado.objects.filter(id__in=request.POST.getlist("empleados_asignados")))
+        procesoupdate.equipo=(Equipo.objects.get(pk=request.POST["equipo"]))
+        procesoupdate.save()
         return render(request, "Guardadocorrectamente.html")
 
 

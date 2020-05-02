@@ -13,20 +13,17 @@
         <label>Referencia</label> <input type="text" name="referencia" value="{{Datos.referencia}}"></br>
         <label>Inicio</label> <input type="date" name="inicio" value="{{Datos.inicio|date:'yy-m-d'}}"></br>
         <label>Fin</label> <input type="date" name="fin" value="{{Datos.fin|date:'yy-m-d'}}"></br>
-        <!--<label>Empleados previamente asignados</label>
-        {% for ea in Datos.empleados_asignados.all %}
-        <h5>{{ea.nombre}} {{ea.apellido}}</h5></br>
-        {% endfor %}-->
         <label>Empleados asignados</label>
+        <h5>*Recuerda que un responsable no puede ser asignado como empleado.</h5>
         <select name="empleados_asignados" multiple>
-        {% for ea in Datos2.all %}
+        {% for ea in Datos2 %}
         <option value="{{ea.id}}" {% if ea in Datos.empleados_asignados.all %} selected {%endif%}>{{ea}} </option>
         {% endfor %}
         </select></br>
         <label>Equipo</label>
         <select name="equipo">
-            {% for ea in Datos3.all %}
-            <option value="{{ea.id}}" {% if ea in Datos.equipo.all %} selected {%endif%}>{{ea}} </option>
+            {% for ea in Datos3 %}
+            <option value="{{ea.id}}" {% if ea.id == Datos.equipo.id %} selected {%endif%}>{{ea}} </option>
             {% endfor %}
         </select></br>
         <input type="submit" value="ENVIAR">

@@ -13,6 +13,7 @@ class Equipo(models.Model):
 
 #Modelo del empleado
 class Empleado(models.Model):
+
     nombre = models.CharField(max_length=50)
     DNI = models.CharField(max_length=9)
     apellido = models.CharField(max_length=50)
@@ -26,7 +27,7 @@ class Empleado(models.Model):
 #Modelo del proceso
 class Proceso(models.Model):
     empleados_asignados = models.ManyToManyField(Empleado)
-    equipo=models.ForeignKey(Equipo, on_delete=models.CASCADE)
+    equipo=models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)
     codigo_orden = models.CharField(max_length=10)
     codigo_proceso = models.IntegerField()
     nombre_proceso = models.CharField(max_length=50)
