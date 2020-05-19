@@ -40,5 +40,5 @@ urlpatterns = [
     path('responsable/post_equipo_update/', views.post_equipo_form_update, name='postequipoformupdate'),
     path('responsable/post_proceso_update/', views.post_proceso_form_update, name='postprocesoformupdate'),
     path('responsable/guardadocorrectamente/', views.guardadocorrectamente, name='guardadocorrectamente'),
-
+    path('operario/deleteAPI', views.borrar_proceso_checkbox, name ='borraroperario')
 ]

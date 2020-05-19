@@ -4,6 +4,9 @@ from django.shortcuts import render, redirect
 from .forms import empleadoform, equipoform, procesoform
 from .models import Equipo, Empleado, Proceso
 
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 # login
 def login(request):
@@ -288,3 +291,9 @@ def post_proceso_form_update_operario(request):
         procesoupdate.equipo = (Equipo.objects.get(pk=request.POST["equipo"]))
         procesoupdate.save()
         return render(request, "guardadocorrectamenteoperario.html")
+
+@method_decorator(csrf_exempt, name='dispatch')
+def borrar_proceso_checkbox(req):
+    proceso = Proceso.objects.get(pk=req.POST["idProceso"])
+    proceso.delete()
+    return HttpResponse("ok")
