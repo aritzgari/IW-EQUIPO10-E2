@@ -1,7 +1,9 @@
+from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
-from .forms import empleadoform, equipoform, procesoform
+from .forms import empleadoform, equipoform, procesoform, LoginForm, RegisterForm
 from .models import Equipo, Empleado, Proceso
 
 from django.utils.decorators import method_decorator
@@ -9,8 +11,58 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 # login
-def login(request):
-    return render(request, "Login.html")
+def get_login(request):
+    context = {"login": LoginForm, "register": RegisterForm}
+
+    return render(request, "Login.html", context)
+
+
+# def do_login(request):
+#     email = request.POST["email"]
+#     DNI = request.POST["DNI"]
+#     if(email==Empleado.email.all && DNI==Empleado.DNI.all):
+#         render(request, )
+#
+def do_login(req):
+
+    username = req.POST['username']
+    password = req.POST['password']
+    user = authenticate(req, username=username, password=password)
+    if user is not None:
+        login(req, user)
+        print(req.GET)
+
+        return redirect('index')
+    else:
+        context = {'form': RegisterForm, 'login': LoginForm, "LoginMessage": "Usuario y/o contraseña incorrectos"}
+        return render(req, "Login.html", context)
+
+def index(req):
+    if req.user.is_superuser:
+       return redirect("responsable")
+    else:
+        return redirect("operario")
+
+# -Funcion para hacer el registro
+def register(req):
+    form = RegisterForm(req.POST)
+
+    if form.is_valid():
+
+        if form.cleaned_data["password1"] != form.cleaned_data["password2"]:
+            context = {'form': RegisterForm, 'login': LoginForm, "RegisterMessage": "Contraseñas no coinciden"}
+            return render(req, "Login.html", context)
+
+        usuario = User(username=form.cleaned_data["username"])
+        usuario.set_password(form.cleaned_data["password1"])
+        usuario.save()
+        user = authenticate(req, username=usuario.username, password=form.cleaned_data["password1"])
+        login(req,user)
+        return redirect('index')
+    else:
+        context = {'form': form, 'login': LoginForm,
+                   "RegisterMessage": "Recuerda la contraseña debe tener al menos 8 caracteres y no pueden ser solo numeros"}
+        return render(req, "Login.html", context)
 
 
 # Esto nos aporta la lista de equipos
@@ -70,17 +122,20 @@ def responsable(request):
     context = {"lista_equipos": equipo, "lista_empleados": empleado, "lista_procesos": proceso}
     return render(request, "Responsable.html", context)
 
+
 # Vista principal del operario
 def operario(request):
     proceso = Proceso.objects.order_by("nombre_proceso")
     context = {"lista_procesos": proceso}
     return render(request, "Operario.html", context)
 
-#Vista del formulario para añadir empleados
+
+# Vista del formulario para añadir empleados
 def formularioempleado(request):
     return render(request, "FormularioEmpleado.html")
 
-#Vista para añadir los datos de los empleados a la base de datos
+
+# Vista para añadir los datos de los empleados a la base de datos
 def post_formularioempleado(request):
     nombre = request.POST["nombre"]
     apellido = request.POST["apellido"]
@@ -91,11 +146,13 @@ def post_formularioempleado(request):
     empleado.save()
     return render(request, "Guardadocorrectamente.html")
 
-#Vista del formulario para añadir equipos
+
+# Vista del formulario para añadir equipos
 def formularioequipo(request):
     return render(request, "FormularioEquipo.html")
 
-#Vista para añadir los datos de los empleados a la base de datos
+
+# Vista para añadir los datos de los empleados a la base de datos
 def post_formularioequipo(request):
     marca = request.POST["marca"]
     modelo = request.POST["modelo"]
@@ -107,16 +164,19 @@ def post_formularioequipo(request):
     equipo.save()
     return render(request, "Guardadocorrectamente.html")
 
-#Cuando los datos introducidos son correctos nos permitirá ver esta vista
+
+# Cuando los datos introducidos son correctos nos permitirá ver esta vista
 def guardadocorrectamente(request):
     return render(request, "Guardadocorrectamente.html")
 
-#Nos permite ver el formulario para añadir empleados
+
+# Nos permite ver el formulario para añadir empleados
 def show_empleado_form(request):
     form = empleadoform()
     return render(request, "empleado_form.html", {"form": form})
 
-#Nos permite traer la información introducida en el formulario de añadir empleados
+
+# Nos permite traer la información introducida en el formulario de añadir empleados
 def post_empleado_form(request):
     form = empleadoform(request.POST)
     if form.is_valid():
@@ -130,12 +190,14 @@ def post_empleado_form(request):
         empleado.save()
         return render(request, "Guardadocorrectamente.html")
 
-#Nos permite ver el formulario para añadir equipos
+
+# Nos permite ver el formulario para añadir equipos
 def show_equipo_form(request):
     form = equipoform()
     return render(request, "equipo_form.html", {"form": form})
 
-#Nos permite traer la información introducida en el formulario de añadir equipos
+
+# Nos permite traer la información introducida en el formulario de añadir equipos
 def post_equipo_form(request):
     form = equipoform(request.POST)
     if form.is_valid():
@@ -149,12 +211,14 @@ def post_equipo_form(request):
         equipo.save()
         return render(request, "Guardadocorrectamente.html")
 
-#Nos permite ver el formulario para añadir procesos
+
+# Nos permite ver el formulario para añadir procesos
 def show_proceso_form(request):
     form = procesoform()
     return render(request, "proceso_form.html", {"form": form})
 
-#Nos permite traer la información introducida en el formulario de añadir procesos
+
+# Nos permite traer la información introducida en el formulario de añadir procesos
 def post_proceso_form(request):
     form = procesoform(request.POST)
 
@@ -291,6 +355,7 @@ def post_proceso_form_update_operario(request):
         procesoupdate.equipo = (Equipo.objects.get(pk=request.POST["equipo"]))
         procesoupdate.save()
         return render(request, "guardadocorrectamenteoperario.html")
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 def borrar_proceso_checkbox(req):

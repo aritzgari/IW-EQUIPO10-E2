@@ -1,8 +1,12 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
-    path('', views.login, name='login'),
+    path('',views.get_login, name='get_login'),
+    path('index',views.index, name='index'),
+    path('register/', views.register, name='do_register'),
+    path('dologin/', views.do_login, name='do_login'),
     # Url de inicio en la que podemos elegir entre ser un operario o un responsable
     path('responsable/', views.responsable, name='responsable'),  # Url de inicio de responsable
     path('responsable/equipo/', views.lista_equipos, name='lista_equipos'),  # Url que da la lista de todos los equipos
@@ -18,9 +22,9 @@ urlpatterns = [
     path('responsable/proceso/update', views.updateproceso, name='updateproceso'),  # Url para updatear procesos
     path('responsable/empleado/<int:empleado_id>', views.detalle_empleado, name="detalleempleado"),
     # Url de detalles de empleados, desde aqui se puede ir a eliminar y updatear
-    path('responsable/equipo/<int:equipo_id>', views.detalle_equipo, name="detalleequipo"),
+    path('register/responsable/equipo/<int:equipo_id>', views.detalle_equipo, name="detalleequipo"),
     # Url de detalles de equipo, desde aqui se puede ir a eliminar y updatear
-    path('responsable/proceso/<int:proceso_id>', views.detalle_proceso, name="detalleproceso"),
+    path('register/responsable/proceso/<int:proceso_id>', views.detalle_proceso, name="detalleproceso"),
     # Url de detalles de proceso, desde aqui se puede ir a eliminar y updatear
     path('operario/proceso/<int:proceso_id>', views.detalle_procesooperario, name="detalleprocesooperario"),
     # Url de detalles de proceso, se puede ir a modificar inicio y fin
