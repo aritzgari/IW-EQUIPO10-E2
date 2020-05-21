@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -10,40 +10,36 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
 
-# login
+# Te devuelve el html
 def get_login(request):
     context = {"login": LoginForm, "register": RegisterForm}
 
     return render(request, "Login.html", context)
 
 
-# def do_login(request):
-#     email = request.POST["email"]
-#     DNI = request.POST["DNI"]
-#     if(email==Empleado.email.all && DNI==Empleado.DNI.all):
-#         render(request, )
-#
+# Compara lo que se introduce con lo almacenado en BD.
 def do_login(req):
-
     username = req.POST['username']
     password = req.POST['password']
     user = authenticate(req, username=username, password=password)
     if user is not None:
         login(req, user)
         print(req.GET)
-
         return redirect('index')
     else:
         context = {'form': RegisterForm, 'login': LoginForm, "LoginMessage": "Usuario y/o contraseña incorrectos"}
         return render(req, "Login.html", context)
 
+
+# Dependiendo de los privilegios te devuelve la página inicial de responsable (superior) o de operario (inferior).
 def index(req):
     if req.user.is_superuser:
-       return redirect("responsable")
+        return redirect("responsable")
     else:
         return redirect("operario")
 
-# -Funcion para hacer el registro
+
+# Función para hacer el registro
 def register(req):
     form = RegisterForm(req.POST)
 
@@ -57,7 +53,7 @@ def register(req):
         usuario.set_password(form.cleaned_data["password1"])
         usuario.save()
         user = authenticate(req, username=usuario.username, password=form.cleaned_data["password1"])
-        login(req,user)
+        login(req, user)
         return redirect('index')
     else:
         context = {'form': form, 'login': LoginForm,
@@ -357,19 +353,19 @@ def post_proceso_form_update_operario(request):
         return render(request, "guardadocorrectamenteoperario.html")
 
 
+# Para poder dar por finalizado un proceso y que desaparezca.
 @method_decorator(csrf_exempt, name='dispatch')
 def borrar_proceso_checkbox(req):
     proceso = Proceso.objects.get(pk=req.POST["idProceso"])
     proceso.delete()
     return HttpResponse("ok")
 
-
+#Permite hacer un post pero esta versión es mediante ajax.
 @method_decorator(csrf_exempt, name='dispatch')
 def anadir_equipo_ayax(req):
     form = equipoform(req.POST)
 
     if form.is_valid():
-
         marca = form.cleaned_data["marca"]
         modelo = form.cleaned_data["modelo"]
         categoria = form.cleaned_data["categoria"]

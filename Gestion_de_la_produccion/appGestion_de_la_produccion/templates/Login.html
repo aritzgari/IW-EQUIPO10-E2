@@ -17,7 +17,7 @@
         <img class="botonope" src="/static/Imagenes/operario boton.png" width="150" height="75"> </a>-->
 
     <div id="iniciosesiondiv">
-        <h2 class="iniciosesiontitulo" >LOGIN</h2>
+        <h2 class="iniciosesiontitulo">LOGIN</h2>
         <form class="iniciosesion" action="{% url 'do_login' %}" method="post">
             {% csrf_token %}
             {{ login.as_p }}

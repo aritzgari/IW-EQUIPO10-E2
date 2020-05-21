@@ -1,6 +1,7 @@
+//Se adquieren los valores del objeto seleccionado en el checkbox
+var finalizarproceso = document.getElementsByClassName("chekboxoperario");
 
-var finalizarproceso =document.getElementsByClassName("pinchecheckbox");
-
+//Se itera por lo valores y se selecciona el id para saber cual borrar, y mediante la url se aplica el código que está en views.
 for(let i=0;i<finalizarproceso.length;i++){
     finalizarproceso[i].addEventListener("click",function(e){
         let form = e.target.parentNode;
@@ -10,6 +11,7 @@ for(let i=0;i<finalizarproceso.length;i++){
             method: "POST",
             body: infoform,
         })
+        //Si da un error de ajax salta.
         .then(function (response) {
         if (response.ok) {
           return response.text();
@@ -17,6 +19,7 @@ for(let i=0;i<finalizarproceso.length;i++){
           throw "Error en la llamada Ajax";
         }
       })
+      //Si da cualquier otro error salta.
       .then(function (texto) {
         form.parentNode.parentNode.remove();
       })

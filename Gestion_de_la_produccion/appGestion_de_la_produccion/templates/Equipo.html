@@ -3,20 +3,21 @@
 
 {% block contenido %}
 
-<h1>Listado de Equipos<a class="añadir" href="/appGestion_de_la_produccion/responsable/equipoform" title="Añadir nuevo equipo"><img
-        src="/static/Imagenes/añadir.png" width="20" height="20"></a> </h1>
+<h1>Listado de Equipos<a class="añadir" href="/appGestion_de_la_produccion/responsable/equipoform"
+                         title="Añadir nuevo equipo"><img
+        src="/static/Imagenes/añadir.png" width="20" height="20"></a></h1>
 <div class="tablasueltas">
     <table id="cosadeequipo">
         {% csrf_token%}
         <thead>
-            <tr class="cosadeequipo">
-              <td class="cosadeequipo"> <b> Marca</b> </td>
-              <td class="cosadeequipo"> <b> Modelo</b> </td>
-              <td class="cosadeequipo"> <b> Categoría</b> </td>
-              <td class="cosadeequipo"> <b> Fecha de adquisición</b> </td>
-              <td class="cosadeequipo"> <b> Fecha de instalación</b> </td>
-              <td class="cosadeequipo"> <b>Detalles</b> </td>
-            </tr>
+        <tr class="cosadeequipo">
+            <td class="cosadeequipo"><b> Marca</b></td>
+            <td class="cosadeequipo"><b> Modelo</b></td>
+            <td class="cosadeequipo"><b> Categoría</b></td>
+            <td class="cosadeequipo"><b> Fecha de adquisición</b></td>
+            <td class="cosadeequipo"><b> Fecha de instalación</b></td>
+            <td class="cosadeequipo"><b>Detalles</b></td>
+        </tr>
         </thead>
 
         <tbody class="cosadeequipo" id="cosasequipo">
@@ -27,22 +28,24 @@
             <td class="cosadeequipo">{{ Equipo.categoria }}</td>
             <td class="cosadeequipo">{{ Equipo.fecha_adquisicion|date:'Y/m/d'}}</td>
             <td class="cosadeequipo">{{ Equipo.fecha_instalacion|date:'Y/m/d'}}</td>
-            <td class="cosadeequipo"><a href="/appGestion_de_la_produccion/responsable/equipo/{{ Equipo.id }}" title="Detalles">Ver detalles</a></td>
+            <td class="cosadeequipo"><a href="/appGestion_de_la_produccion/responsable/equipo/{{ Equipo.id }}"
+                                        title="Detalles">Ver detalles</a></td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
-    <div>
-    <h1>Añadir equipo </h1>
-    <form action="" id="formnuevoequipo">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" name="nuevoequipo" id="botonnuevo" value="NUEVO EQUIPO">
-        <input type="hidden" name="idEquipo" value="{{Equipo.id}}">
-    </form>
-
-    </div>
+<div>
+    <fieldset id="formequipoajax">
+        <legend >Añadir equipo</legend>
+        <form action="" id="formnuevoequipo">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" name="nuevoequipo" id="botonnuevo" value="CREAR EQUIPO">
+            <input type="hidden" name="idEquipo" value="{{Equipo.id}}">
+        </form>
+    </fieldset>
+</div>
 {% endblock %}
 {%block scripts%}
 <script src="{% static 'js/nuevoequipo.js'%}"></script>
