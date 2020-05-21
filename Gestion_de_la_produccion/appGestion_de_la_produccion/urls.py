@@ -22,9 +22,9 @@ urlpatterns = [
     path('responsable/proceso/update', views.updateproceso, name='updateproceso'),  # Url para updatear procesos
     path('responsable/empleado/<int:empleado_id>', views.detalle_empleado, name="detalleempleado"),
     # Url de detalles de empleados, desde aqui se puede ir a eliminar y updatear
-    path('register/responsable/equipo/<int:equipo_id>', views.detalle_equipo, name="detalleequipo"),
+    path('responsable/equipo/<int:equipo_id>', views.detalle_equipo, name="detalleequipo"),
     # Url de detalles de equipo, desde aqui se puede ir a eliminar y updatear
-    path('register/responsable/proceso/<int:proceso_id>', views.detalle_proceso, name="detalleproceso"),
+    path('responsable/proceso/<int:proceso_id>', views.detalle_proceso, name="detalleproceso"),
     # Url de detalles de proceso, desde aqui se puede ir a eliminar y updatear
     path('operario/proceso/<int:proceso_id>', views.detalle_procesooperario, name="detalleprocesooperario"),
     # Url de detalles de proceso, se puede ir a modificar inicio y fin
@@ -44,5 +44,6 @@ urlpatterns = [
     path('responsable/post_equipo_update/', views.post_equipo_form_update, name='postequipoformupdate'),
     path('responsable/post_proceso_update/', views.post_proceso_form_update, name='postprocesoformupdate'),
     path('responsable/guardadocorrectamente/', views.guardadocorrectamente, name='guardadocorrectamente'),
-    path('operario/deleteAPI', views.borrar_proceso_checkbox, name ='borraroperario')
+    path('operario/deleteAPI', views.borrar_proceso_checkbox, name ='borraroperario'),
+    path('responsable/equipo/añadirequipoAPI', views.anadir_equipo_ayax, name ='añadirequipoayax')
 ]

@@ -68,7 +68,7 @@ def register(req):
 # Esto nos aporta la lista de equipos
 def lista_equipos(request):
     equipo = Equipo.objects.order_by("id")
-    context = {"lista_equipos": equipo}
+    context = {"lista_equipos": equipo, "form": equipoform}
     return render(request, "Equipo.html", context)
 
 
@@ -362,3 +362,20 @@ def borrar_proceso_checkbox(req):
     proceso = Proceso.objects.get(pk=req.POST["idProceso"])
     proceso.delete()
     return HttpResponse("ok")
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+def anadir_equipo_ayax(req):
+    form = equipoform(req.POST)
+
+    if form.is_valid():
+
+        marca = form.cleaned_data["marca"]
+        modelo = form.cleaned_data["modelo"]
+        categoria = form.cleaned_data["categoria"]
+        fecha_adquisicion = form.cleaned_data["fecha_adquisicion"]
+        fecha_instalacion = form.cleaned_data["fecha_instalacion"]
+        equipo = Equipo(marca=marca, modelo=modelo, categoria=categoria, fecha_adquisicion=fecha_adquisicion,
+                        fecha_instalacion=fecha_instalacion)
+        equipo.save()
+        return HttpResponse(equipo.id)
