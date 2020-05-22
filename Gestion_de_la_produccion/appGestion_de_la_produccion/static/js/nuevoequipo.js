@@ -2,15 +2,16 @@
 document.getElementById("botonnuevo").addEventListener("click", function (event) {
   event.preventDefault();
 
-
+//guardamos los datos de los formularios en la variable form
   let form = document.getElementById("formnuevoequipo");
-
+//pasamos la informacion a un objeto
   let infoform = new FormData(form);
-
+//llamamos a la API
   fetch("./añadirequipoAPI", {
     method: "POST",
     body: infoform,
   })
+  //llamamos a ajax si no sale error
     .then(function (response) {
       if (response.ok) {
         return response.text();
@@ -18,7 +19,7 @@ document.getElementById("botonnuevo").addEventListener("click", function (event)
         throw "Error en la llamada Ajax";
       }
     })
-
+//añadimos los datos introducidos a nuestra tabla
     .then(function (text) {
       console.log(text);
       form.append(anadir_datos(infoform,text));
@@ -30,7 +31,7 @@ document.getElementById("botonnuevo").addEventListener("click", function (event)
     });
 });
 
-
+//declaramos la tabla en la que vamos a añadir la nueva fila y definimos cada dato en cada columna
 function anadir_datos(infoform,id) {
   var tabla = document.getElementById("cosasequipo");
 

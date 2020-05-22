@@ -19,10 +19,11 @@ for(let i=0;i<finalizarproceso.length;i++){
           throw "Error en la llamada Ajax";
         }
       })
-      //Si da cualquier otro error salta.
+     //La funcion que manda borrar la fila entera
       .then(function (texto) {
         form.parentNode.parentNode.remove();
       })
+       //Si da cualquier otro error salta.
       .catch(function (err) {
         alert("Error inesperado");
       });
