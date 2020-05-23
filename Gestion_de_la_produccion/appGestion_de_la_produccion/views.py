@@ -19,9 +19,9 @@ def get_login(request):
 
 # Compara lo que se introduce con lo almacenado en BD.
 def do_login(req):
-    username = req.POST['username']
-    password = req.POST['password']
-    user = authenticate(req, username=username, password=password)
+    usuario = req.POST['usuario']
+    contrasena = req.POST['contrasena']
+    user = authenticate(req, username=usuario, password=contrasena)
     if user is not None:
         login(req, user)
         print(req.GET)
